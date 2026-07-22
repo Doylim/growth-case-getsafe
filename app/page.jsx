@@ -88,8 +88,8 @@ export default function Home() {
               <Chip>Volumen-Play</Chip>
               <p className="font-bold text-lg mt-3 mb-1">Kassen-Check (GKV)</p>
               <p className="text-sm leading-relaxed mb-4" style={{ color: C.inkSoft }}>
-                Sparpotenzial in 10 Sekunden, Live-Zähler „bereits verschenkt",
-                Übergabe in den Wechsel-Flow – der „Spare 1.440 €"-Moment vor der
+                Sparpotenzial in 10 Sekunden, Live-Zähler „bereits verschenkt“,
+                Übergabe in den Wechsel-Flow – der „Spare 1.440 €“-Moment vor der
                 Registrierung.
               </p>
               <span

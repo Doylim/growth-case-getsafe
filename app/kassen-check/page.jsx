@@ -93,7 +93,9 @@ function Rechner() {
 
       {/* Brutto */}
       <div className="flex items-baseline justify-between mb-1.5">
-        <label className="text-sm font-semibold">Dein Bruttogehalt</label>
+        <label htmlFor="brutto-slider" className="text-sm font-semibold">
+          Dein Bruttogehalt
+        </label>
         <span className="font-bold">
           {fmt(brutto)} €
           <span className="text-xs font-medium" style={{ color: C.inkSoft }}>
@@ -102,13 +104,13 @@ function Rechner() {
         </span>
       </div>
       <input
+        id="brutto-slider"
         type="range"
         min={1000}
         max={8000}
         step={50}
         value={brutto}
         onChange={(e) => setBrutto(Number(e.target.value))}
-        aria-label="Bruttogehalt pro Monat in Euro"
         style={{
           background: `linear-gradient(to right, ${C.ink} ${((brutto - 1000) / 7000) * 100}%, ${C.line} 0%)`,
         }}
@@ -116,19 +118,21 @@ function Rechner() {
 
       {/* Zusatzbeitrag */}
       <div className="flex items-baseline justify-between mt-5 mb-1.5">
-        <label className="text-sm font-semibold">Zusatzbeitrag deiner Kasse</label>
+        <label htmlFor="zusatz-slider" className="text-sm font-semibold">
+          Zusatzbeitrag deiner Kasse
+        </label>
         {kennt && <span className="font-bold">{fmt(zusatz, 2).replace(".", ",")} %</span>}
       </div>
       {kennt ? (
         <>
           <input
+            id="zusatz-slider"
             type="range"
             min={GUENSTIGSTE}
             max={TEUERSTE}
             step={0.01}
             value={zusatz}
             onChange={(e) => setZusatz(Number(e.target.value))}
-            aria-label="Zusatzbeitrag deiner Krankenkasse in Prozent"
             style={{
               background: `linear-gradient(to right, ${C.ink} ${((zusatz - GUENSTIGSTE) / (TEUERSTE - GUENSTIGSTE)) * 100}%, ${C.line} 0%)`,
             }}
@@ -295,6 +299,7 @@ export default function KassenCheck() {
     >
       <style>{`
         input[type=range] { -webkit-appearance: none; appearance: none; height: 6px; border-radius: 999px; outline: none; width: 100%; }
+        input[type=range]:focus-visible { outline: 2px solid ${C.ink}; outline-offset: 4px; }
         input[type=range]::-webkit-slider-thumb {
           -webkit-appearance: none; appearance: none;
           width: 24px; height: 24px; border-radius: 50%;
@@ -539,7 +544,7 @@ export default function KassenCheck() {
             <strong style={{ color: C.ink }}>Methodik:</strong> Differenz zwischen deinem
             Zusatzbeitrag und dem günstigsten Satz 2026 (2,18 %), halbiert
             (Arbeitnehmeranteil), auf dein beitragspflichtiges Einkommen (max.{" "}
-            {fmt(BBG_MONAT, 2)} € / Monat). „Bis zu 770 €" = Maximalfall: teuerste Kasse
+            {fmt(BBG_MONAT, 2)} € / Monat). „Bis zu 770 €“ = Maximalfall: teuerste Kasse
             (4,39 %) zur günstigsten, Einkommen an der Beitragsbemessungsgrenze.
             Amtlicher durchschnittlicher Zusatzbeitrag (Schätzerkreis/BMG): 2,9 %;
             realer, mitgliedergewichteter Durchschnitt: 3,13 %. Datenstand Juli

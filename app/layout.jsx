@@ -7,6 +7,7 @@ const inter = Inter({
 });
 
 export const metadata = {
+  metadataBase: new URL("https://growth-case-getsafe.vercel.app"),
   title: "Growth-Case Krankenversicherung · Bewerbungsarbeit Norbert Sommer",
   description:
     "Bewerbungsarbeit von Norbert Sommer: Growth-Funnel-Konzept Krankenversicherung mit zwei klickbaren Kampagnen-Demos.",
