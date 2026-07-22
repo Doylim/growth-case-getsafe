@@ -14,13 +14,16 @@ const HOOK_DAUER = 11;
 const dateiUrl = (name) =>
   "file:///" + path.join(SZENEN, name).replace(/\\/g, "/");
 
+// `node ads.js mockups` ueberspringt die Hook-Video-Aufnahme
+const nurMockups = process.argv[2] === "mockups";
+
 (async () => {
   fs.mkdirSync(OUT, { recursive: true });
   fs.mkdirSync(TMP, { recursive: true });
   const browser = await chromium.launch();
 
   // 1. Hook-1-Video aufnehmen (540x960 nativ, ffmpeg skaliert auf 1080x1920)
-  {
+  if (!nurMockups) {
     const context = await browser.newContext({
       viewport: { width: 540, height: 960 },
       recordVideo: { dir: TMP, size: { width: 540, height: 960 } },
@@ -55,6 +58,7 @@ const dateiUrl = (name) =>
   const MOCKUPS = [
     { datei: "meta-feed.html", elemente: ["meta-v1", "meta-v2", "meta-v3"] },
     { datei: "google-rsa.html", elemente: ["rsa-gkv", "rsa-pkv"] },
+    { datei: "crm.html", elemente: ["crm-inapp", "crm-push", "crm-email"] },
   ];
   const context = await browser.newContext({
     viewport: { width: 760, height: 1200 },

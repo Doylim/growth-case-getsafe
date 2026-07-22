@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  /* CRM-Mockups (3): In-App-Karte, Push-Notification, E-Mail – Konzept 4.5 */
+  :root {
+    --ink: #111210; --ink-soft: #626762; --green: #12B76A; --green-dark: #0B7A4B;
+    --green-soft: #E9F9F1; --card: #F6F6F4; --line: #E8E8E4; --paper: #FFFFFF;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Inter", -apple-system, "Segoe UI", Roboto, sans-serif;
+    background: #dddddd;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    width: 640px;
+    letter-spacing: -0.01em;
+  }
+
+  /* ── In-App-Karte ── */
+  .app { width: 400px; background: var(--paper); border-radius: 32px; overflow: hidden;
+    border: 1px solid var(--line); }
+  .app-kopf { padding: 26px 22px 14px; display: flex; justify-content: space-between; align-items: center; }
+  .app-gruss { font-size: 22px; font-weight: 900; }
+  .app-avatar { width: 36px; height: 36px; border-radius: 999px; background: var(--card);
+    display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 14px; }
+  .police { display: flex; align-items: center; gap: 12px; margin: 0 22px 10px;
+    padding: 14px 16px; border: 1px solid var(--line); border-radius: 18px; }
+  .police .icon { width: 38px; height: 38px; border-radius: 12px; background: var(--card);
+    display: flex; align-items: center; justify-content: center; font-size: 17px; }
+  .police .name { font-size: 14.5px; font-weight: 700; }
+  .police .status { font-size: 12px; color: var(--green-dark); font-weight: 600; }
+  .crm-karte { margin: 14px 22px 24px; border-radius: 22px; background: var(--ink);
+    color: #fff; padding: 22px; }
+  .crm-badge { display: inline-flex; align-items: center; gap: 6px; border-radius: 999px;
+    background: rgba(255,255,255,.1); color: #7CE0B3; font-size: 12px; font-weight: 800;
+    padding: 5px 12px; margin-bottom: 12px; }
+  .crm-badge .punkt { width: 7px; height: 7px; border-radius: 999px; background: var(--green); }
+  .crm-titel { font-size: 21px; font-weight: 900; line-height: 1.2; margin-bottom: 8px; }
+  .crm-text { font-size: 13.5px; line-height: 1.5; color: #C9CCC9; margin-bottom: 16px; }
+  .crm-cta { display: inline-block; border-radius: 999px; background: var(--green-dark);
+    color: #fff; font-size: 14px; font-weight: 800; padding: 12px 22px; }
+  .demo-fuss { font-size: 10.5px; color: var(--ink-soft); text-align: center; padding: 0 20px 14px; }
+
+  /* ── Push-Notification ── */
+  .sperr { width: 400px; height: 380px; border-radius: 32px; overflow: hidden;
+    background: linear-gradient(160deg, #17241d 0%, #0d1411 55%, #111210 100%);
+    display: flex; flex-direction: column; align-items: center; padding: 34px 18px; position: relative; }
+  .uhr { color: #fff; font-size: 56px; font-weight: 800; letter-spacing: -0.02em; }
+  .datum { color: rgba(255,255,255,.65); font-size: 14px; font-weight: 600; margin-bottom: 26px; }
+  .push { width: 100%; border-radius: 20px; background: rgba(250,250,250,.96);
+    padding: 14px 16px; }
+  .push-kopf { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+  .push-icon { width: 22px; height: 22px; border-radius: 6px; background: var(--ink);
+    color: #fff; font-size: 11px; font-weight: 900; display: flex; align-items: center; justify-content: center; }
+  .push-app { font-size: 12px; font-weight: 600; color: var(--ink-soft); text-transform: uppercase; letter-spacing: .04em; flex: 1; }
+  .push-zeit { font-size: 12px; color: var(--ink-soft); }
+  .push-titel { font-size: 14.5px; font-weight: 800; margin-bottom: 3px; }
+  .push-text { font-size: 13.5px; line-height: 1.45; color: #3a3d3a; }
+  .sperr .demo-fuss { position: absolute; bottom: 12px; left: 0; right: 0; color: rgba(255,255,255,.5); }
+
+  /* ── E-Mail ── */
+  .mail { width: 592px; background: var(--paper); border-radius: 16px; overflow: hidden;
+    border: 1px solid var(--line); }
+  .mail-kopf { padding: 18px 24px; border-bottom: 1px solid var(--line); }
+  .mail-betreff { font-size: 17px; font-weight: 800; margin-bottom: 10px; }
+  .mail-von { display: flex; align-items: center; gap: 10px; }
+  .mail-avatar { width: 34px; height: 34px; border-radius: 999px; background: var(--ink);
+    color: #fff; font-weight: 900; font-size: 13px; display: flex; align-items: center; justify-content: center; }
+  .mail-von .name { font-size: 13.5px; font-weight: 700; }
+  .mail-von .adresse { font-size: 12px; color: var(--ink-soft); }
+  .mail-body { padding: 30px 40px 22px; }
+  .mail-marke { display: flex; align-items: center; gap: 5px; margin-bottom: 22px; }
+  .mail-marke .wort { font-size: 26px; font-weight: 900; letter-spacing: -0.04em; }
+  .mail-marke .punkt { width: 8px; height: 8px; border-radius: 999px; background: var(--green); margin-top: 10px; }
+  .mail-headline { font-size: 26px; font-weight: 900; line-height: 1.2; letter-spacing: -0.02em; margin-bottom: 14px; }
+  .mail-text { font-size: 14.5px; line-height: 1.65; color: #3a3d3a; margin-bottom: 12px; }
+  .mail-punkte { margin: 0 0 18px; padding: 16px 18px; background: var(--card); border-radius: 14px; }
+  .mail-punkt { display: flex; gap: 9px; font-size: 13.5px; font-weight: 600; color: var(--ink-soft); padding: 4px 0; }
+  .mail-punkt .haken { color: var(--green-dark); font-weight: 900; }
+  .mail-cta { display: inline-block; border-radius: 999px; background: var(--ink); color: #fff;
+    font-size: 15px; font-weight: 800; padding: 14px 28px; margin: 4px 0 8px; }
+  .mail-ps { font-size: 13px; color: var(--ink-soft); line-height: 1.5; margin-top: 10px; }
+  .mail-fuss { padding: 14px 40px 18px; border-top: 1px solid var(--line);
+    font-size: 11px; color: var(--ink-soft); line-height: 1.6; }
+</style>
+</head>
+<body>
+
+  <!-- CRM 1: In-App-Karte (alle Bestandskund:innen mit hinterlegter GKV) -->
+  <div class="app" id="crm-inapp">
+    <div class="app-kopf">
+      <span class="app-gruss">Hallo Alex</span>
+      <span class="app-avatar">A</span>
+    </div>
+    <div class="police">
+      <span class="icon">🛡</span>
+      <span style="flex:1">
+        <div class="name">Haftpflichtversicherung</div>
+        <div class="status">aktiv</div>
+      </span>
+    </div>
+    <div class="police">
+      <span class="icon">🏠</span>
+      <span style="flex:1">
+        <div class="name">Hausratversicherung</div>
+        <div class="status">aktiv</div>
+      </span>
+    </div>
+    <div class="crm-karte">
+      <span class="crm-badge"><span class="punkt"></span> Neu für dich</span>
+      <p class="crm-titel">Zahlst du zu viel für deine Krankenkasse?</p>
+      <p class="crm-text">
+        Gleiche Grundleistungen, bis zu 770&thinsp;€ Unterschied pro Jahr.
+        Dein Check dauert 10 Sekunden.
+      </p>
+      <span class="crm-cta">Jetzt prüfen</span>
+    </div>
+    <p class="demo-fuss">Konzept-Mockup · Bewerbungsarbeit Norbert Sommer · keine Ansicht der Getsafe GmbH</p>
+  </div>
+
+  <!-- CRM 2: Push zur Januar-Erhoehungswelle (Sonderkuendigungsrecht) -->
+  <div class="sperr" id="crm-push">
+    <div class="uhr">07:42</div>
+    <div class="datum">Montag, 12. Januar</div>
+    <div class="push">
+      <div class="push-kopf">
+        <span class="push-icon">g</span>
+        <span class="push-app">Getsafe</span>
+        <span class="push-zeit">jetzt</span>
+      </div>
+      <p class="push-titel">Deine Kasse hat den Beitrag erhöht?</p>
+      <p class="push-text">
+        Dann darfst du sofort wechseln – Sonderkündigungsrecht.
+        Berechne dein Sparpotenzial in 10 Sekunden.
+      </p>
+    </div>
+    <p class="demo-fuss">Konzept-Mockup · Bewerbungsarbeit Norbert Sommer · keine Ansicht der Getsafe GmbH</p>
+  </div>
+
+  <!-- CRM 3: E-Mail an PKV-Segment (Einkommen/Beruf ueber Schwelle, BU-Kund:innen) -->
+  <div class="mail" id="crm-email">
+    <div class="mail-kopf">
+      <p class="mail-betreff">Eine Option, die die meisten nie prüfen</p>
+      <div class="mail-von">
+        <span class="mail-avatar">g</span>
+        <span>
+          <div class="name">Getsafe</div>
+          <div class="adresse">hallo@hellogetsafe.com · an mich</div>
+        </span>
+      </div>
+    </div>
+    <div class="mail-body">
+      <div class="mail-marke"><span class="wort">getsafe</span><span class="punkt"></span></div>
+      <p class="mail-headline">Du erfüllst vermutlich eine Voraussetzung, die die meisten nicht erfüllen.</p>
+      <p class="mail-text">
+        Wer über der Versicherungspflichtgrenze von 77.400&thinsp;€ verdient, kann in die private
+        Krankenversicherung wechseln. Ob sich das lohnt, hängt von deiner Situation ab –
+        deshalb fragen wir, statt zu verkaufen:
+      </p>
+      <div class="mail-punkte">
+        <div class="mail-punkt"><span class="haken">✓</span> 5 ehrliche Fragen, 60 Sekunden</div>
+        <div class="mail-punkt"><span class="haken">✓</span> Wir sagen auch, wann die GKV besser ist</div>
+        <div class="mail-punkt"><span class="haken">✓</span> Beratung nur, wenn es wirklich passt</div>
+      </div>
+      <span class="mail-cta">PKV-Fit-Check starten</span>
+      <p class="mail-ps">
+        PS: Bleibst du lieber gesetzlich? Auch gut – dann zeigt dir der Kassen-Check
+        in 10 Sekunden, ob du bei gleichen Leistungen sparst.
+      </p>
+    </div>
+    <div class="mail-fuss">
+      Du bekommst diese Mail, weil dein hinterlegtes Profil zur PKV-Option passt ·
+      Abmelden · Präferenzen<br>
+      Konzept-Mockup · Bewerbungsarbeit Norbert Sommer · keine E-Mail der Getsafe GmbH
+    </div>
+  </div>
+
+</body>
+</html>
