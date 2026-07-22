@@ -124,9 +124,8 @@ export default function Home() {
             </Link>
           </div>
           <p className="text-sm mt-4 leading-relaxed" style={{ color: C.inkSoft }}>
-            Beide Strecken sind verzahnt: Gutverdiener sehen im Kassen-Check die
-            PKV-Option, wer nicht in die PKV passt, landet im Kassen-Check. Kein
-            Lead geht verloren.
+            Verzahnt: Gutverdiener sehen im Kassen-Check die PKV-Option, wer nicht
+            in die PKV passt, landet im Kassen-Check – kein Lead geht verloren.
           </p>
         </div>
       </section>
@@ -144,9 +143,9 @@ export default function Home() {
             Die Creatives zur Kampagne
           </h2>
           <p className="text-sm leading-relaxed mb-8" style={{ color: "#C9CCC9" }}>
-            Alles hier ist im AI-Stack entstanden: Szenen als Code, Playwright als
-            Kamera, ffmpeg als Schnittplatz, ElevenLabs als Sprecher. Jedes Asset
-            in Minuten reproduzierbar – Copy ändern, neu rendern, testen.
+            Alles im AI-Stack produziert: Szenen als Code, Playwright als Kamera,
+            ffmpeg als Schnitt, ElevenLabs als Stimme. Jedes Asset in Minuten neu
+            renderbar – Copy ändern, rendern, testen.
           </p>
 
           {/* Videos */}
@@ -211,10 +210,9 @@ export default function Home() {
           </div>
 
           <p className="text-xs mt-8 leading-relaxed" style={{ color: "#8A8F8A" }}>
-            Und alles ist verkabelt: Die Demos tragen ein cookieloses Event-Tracking
-            entlang der KPI-Kette – vom Rechner-Start über die PKV-Weiche bis zum
-            Beratungs-Klick. Kein Consent-Banner nötig, keine personenbezogenen
-            Daten, aber jede Conversion-Frage beantwortbar.
+            Und alles ist verkabelt: cookieloses Event-Tracking entlang der
+            KPI-Kette, vom Rechner-Start bis zum Beratungs-Klick. Keine
+            personenbezogenen Daten – aber jede Conversion-Frage beantwortbar.
           </p>
         </div>
       </section>
@@ -273,7 +271,7 @@ export default function Home() {
           <p className="text-sm leading-relaxed mb-6" style={{ color: C.inkSoft }}>
             Ich baue Dinge, die live sind – nicht Konzepte, die in Schubladen liegen.
           </p>
-          <div className="space-y-4">
+          <div className="grid sm:grid-cols-2 gap-4">
             <div className="rounded-[24px] p-6" style={{ background: C.card, border: `1px solid ${C.line}` }}>
               <p className="font-bold mb-1">
                 Fight Evolution Heidelberg e.V.{" "}
@@ -286,30 +284,19 @@ export default function Home() {
                 </a>
               </p>
               <p className="text-sm leading-relaxed" style={{ color: C.inkSoft }}>
-                Kampfsportverein, über 15 Jahre Geschichte, 2024 neu aufgestellt – ich
-                ehrenamtlich als Vorstand und Trainer. Marke, Logo und Website von
-                null: Next.js auf Vercel, Botschutz vorm Probetraining-Formular, KI
-                schreibt auf jede Anfrage eine persönliche Antwortmail. AI in
-                Produktion – mit Kostenbewusstsein, denn jede automatisierte Mail
-                kostet Geld.
+                Kampfsportverein mit 15+ Jahren Geschichte, 2024 neu aufgestellt –
+                ich ehrenamtlich als Vorstand und Trainer. Marke, Logo, Website von
+                null: Next.js auf Vercel, Botschutz vorm Formular, KI beantwortet
+                jede Anfrage persönlich. AI in Produktion – mit Kostenbewusstsein,
+                denn jede automatisierte Mail kostet Geld.
               </p>
             </div>
             <div className="rounded-[24px] p-6" style={{ background: C.card, border: `1px solid ${C.line}` }}>
-              <p className="font-bold mb-1">Eigene E-Commerce-Marke</p>
+              <p className="font-bold mb-1">Hauptberuf: Operations &amp; Lean Management</p>
               <p className="text-sm leading-relaxed" style={{ color: C.inkSoft }}>
-                Nachhaltige Produkte, eigener Shop plus Amazon. Amazon Ads steuere
-                ich selbst: Budget weg von Keywords, die Geld verbrennen, hin zu
-                denen, die konvertieren. Learning: Jede Kreatividee braucht eine Zahl
-                dahinter.
-              </p>
-            </div>
-            <div className="rounded-[24px] p-6" style={{ background: C.card, border: `1px solid ${C.line}` }}>
-              <p className="font-bold mb-1">Self-Publishing & Hauptberuf Operations/Lean</p>
-              <p className="text-sm leading-relaxed" style={{ color: C.inkSoft }}>
-                Mehrere Buchprojekte von Idee bis Verkauf im AI-Workflow – nicht
-                alles hat funktioniert, genau das ist der Punkt: veröffentlichen,
-                messen, lernen. Hauptberuflich verschlanke ich Prozesse in der
-                Industrie – dieselbe Disziplin wie Growth: testen, messen, iterieren.
+                Ich verschlanke Prozesse in der Industrie – dieselbe Disziplin wie
+                Growth, nur mit anderen Werkzeugen: testen, messen, Verschwendung
+                eliminieren, iterieren.
               </p>
             </div>
           </div>
