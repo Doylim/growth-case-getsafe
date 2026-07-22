@@ -9,7 +9,7 @@ export default function NotFound() {
       <p className="font-black text-3xl">Seite nicht gefunden</p>
       <Link
         href="/"
-        className="rounded-full px-8 py-4 font-bold text-white"
+        className="rounded-full px-8 py-4 font-bold text-white no-underline transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_12px_32px_rgba(17,18,16,.25)]"
         style={{ background: "#111210" }}
       >
         Zur Startseite

@@ -15,7 +15,7 @@ const BBG_MONAT = 5812.5;
 const GUENSTIGSTE = 2.18;
 const TEUERSTE = 4.39;
 // Realer, mitgliedergewichteter Durchschnitt 2026 (amtlicher Wert des
-// Schätzerkreises: 2,9 % – der tatsächliche Marktdurchschnitt liegt darüber)
+// Schätzerkreises: 2,9 % – der tatsächliche Marktdurchschnitt liegt darüber)
 const DURCHSCHNITT = 3.13;
 
 const C = {
@@ -93,6 +93,7 @@ function Rechner() {
     >
       {/* Kopf im Produktkarten-Stil */}
       <div className="flex items-center gap-3 mb-5">
+        {/* design:keep — Emoji-Icon ist bewusste Nachbildung der Getsafe-Produktkarten-Optik */}
         <div
           className="rounded-2xl flex items-center justify-center text-xl"
           style={{ width: 48, height: 48, background: C.card }}
@@ -114,7 +115,7 @@ function Rechner() {
           Dein Bruttogehalt
         </label>
         <span className="font-bold">
-          {fmt(brutto)} €
+          {fmt(brutto)} €
           <span className="text-xs font-medium" style={{ color: C.inkSoft }}>
             {" "}/ Monat
           </span>
@@ -141,7 +142,7 @@ function Rechner() {
         <label htmlFor="zusatz-slider" className="text-sm font-semibold">
           Zusatzbeitrag deiner Kasse
         </label>
-        {kennt && <span className="font-bold">{fmt(zusatz, 2).replace(".", ",")} %</span>}
+        {kennt && <span className="font-bold">{fmt(zusatz, 2).replace(".", ",")} %</span>}
       </div>
       {kennt ? (
         <>
@@ -161,8 +162,8 @@ function Rechner() {
             }}
           />
           <div className="flex justify-between text-xs mt-1" style={{ color: C.inkSoft }}>
-            <span>2,18 % günstigste</span>
-            <span>4,39 % teuerste</span>
+            <span>2,18 % günstigste</span>
+            <span>4,39 % teuerste</span>
           </div>
         </>
       ) : (
@@ -171,12 +172,12 @@ function Rechner() {
           style={{ background: C.card }}
         >
           Alles klar – wir rechnen mit dem realen Durchschnitt von{" "}
-          <strong>3,13 %</strong>.
+          <strong>3,13 %</strong>.
         </p>
       )}
       <button
         onClick={() => setKennt(!kennt)}
-        className="text-xs font-semibold mt-2.5 underline underline-offset-2 cursor-pointer"
+        className="text-xs font-semibold mt-0.5 py-2 -mb-2 underline underline-offset-2 cursor-pointer"
         style={{ color: C.inkSoft }}
       >
         {kennt ? "Ich kenne meinen Zusatzbeitrag nicht" : "Zusatzbeitrag doch eingeben"}
@@ -194,22 +195,22 @@ function Rechner() {
                 className="rounded-full"
                 style={{ width: 8, height: 8, background: C.green }}
               />
-              Spare {fmt(calc.sparenJahr)} € / Jahr
+              Spare {fmt(calc.sparenJahr)} € / Jahr
             </span>
             <p className="text-sm mb-1" style={{ color: C.inkSoft }}>
               Das sind{" "}
-              <strong style={{ color: C.ink }}>{fmt(calc.sparenMonat, 2)} € netto</strong>{" "}
+              <strong style={{ color: C.ink }}>{fmt(calc.sparenMonat, 2)} € netto</strong>{" "}
               mehr pro Monat – bei gleichen gesetzlichen Grundleistungen.
             </p>
             <p className="text-xs mb-5" style={{ color: C.inkSoft }}>
               Seit 1. Januar bereits verschenkt:{" "}
               <strong style={{ color: C.ink, fontVariantNumeric: "tabular-nums" }}>
-                {fmt(calc.verloren, 2)} €
+                {fmt(calc.verloren, 2)} €
               </strong>{" "}
               – und es tickt weiter.
             </p>
             <button
-              className="w-full rounded-full py-3.5 font-bold text-white cursor-pointer transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_12px_32px_rgba(17,18,16,.25)]"
+              className="w-full rounded-full py-4 font-bold text-white cursor-pointer transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_12px_32px_rgba(17,18,16,.25)]"
               style={{ background: C.ink }}
               onClick={() => {
                 track("kc_wechsel_click");
@@ -246,7 +247,7 @@ function Rechner() {
         )}
 
         {/* Entscheidungskarte: erscheint in beiden Zweigen, sobald das
-            Jahresbrutto über der Versicherungspflichtgrenze (77.400 €) liegt */}
+            Jahresbrutto über der Versicherungspflichtgrenze (77.400 €) liegt */}
         {brutto * 12 > 77400 && (
           <div
             className="mt-4 rounded-2xl overflow-hidden"
@@ -260,7 +261,7 @@ function Rechner() {
             </div>
             <div className="p-4" style={{ background: C.card }}>
               <p className="text-xs leading-relaxed mb-3" style={{ color: C.inkSoft }}>
-                Mit über 77.400 € Jahresbrutto (Versicherungspflichtgrenze 2026)
+                Mit über 77.400 € Jahresbrutto (Versicherungspflichtgrenze 2026)
                 steht dir auch die <strong style={{ color: C.ink }}>private
                 Krankenversicherung</strong> offen.
               </p>
@@ -273,7 +274,7 @@ function Rechner() {
                     Weg 1 · GKV
                   </p>
                   <p className="text-sm font-bold">
-                    {lohnt ? `${fmt(calc.sparenJahr)} € / Jahr` : "ausgereizt"}
+                    {lohnt ? `${fmt(calc.sparenJahr)} € / Jahr` : "ausgereizt"}
                   </p>
                   <p className="text-[11px]" style={{ color: C.inkSoft }}>
                     {lohnt
@@ -288,7 +289,7 @@ function Rechner() {
                   <p className="text-[11px] font-bold uppercase mb-0.5" style={{ color: C.inkSoft, letterSpacing: "0.06em" }}>
                     Weg 2 · PKV
                   </p>
-                  <p className="text-sm font-bold">bis 613 € / Monat</p>
+                  <p className="text-sm font-bold">bis 613 € / Monat</p>
                   <p className="text-[11px]" style={{ color: C.inkSoft }}>
                     Arbeitgeberzuschuss zum Beitrag
                   </p>
@@ -404,11 +405,11 @@ export default function KassenCheck() {
         >
           <div className="flex-1 lg:pt-8">
             <h1
-              className="leading-[1.08] mb-6"
+              className="leading-[1.08] mb-6 text-balance"
               style={{ fontSize: "clamp(2.2rem, 5.5vw, 3.6rem)", letterSpacing: "-0.03em" }}
             >
               <span className="font-medium block">Gleiche Grundleistungen.</span>
-              <span className="font-black block">Bis zu 770 € weniger zahlen.</span>
+              <span className="font-black block">Bis zu 770 € weniger zahlen.</span>
             </h1>
             <ul className="space-y-2.5 text-base mb-8">
               <li className="flex items-start gap-2.5">
@@ -446,7 +447,7 @@ export default function KassenCheck() {
       <section className="px-5 py-16" style={{ background: C.card }}>
         <div className="mx-auto" style={{ maxWidth: 1080 }}>
           <h2
-            className="mb-10 leading-tight"
+            className="mb-10 leading-tight text-balance"
             style={{ fontSize: "clamp(1.6rem, 4vw, 2.3rem)", letterSpacing: "-0.02em" }}
           >
             <span className="font-medium">Kassenwechsel, neu gedacht. </span>
@@ -457,7 +458,7 @@ export default function KassenCheck() {
               {
                 chip: "gut zu wissen",
                 t: "2026 zahlen fast alle mehr",
-                d: "Amtlich festgelegt sind 2,9 % Zusatzbeitrag – real zahlen Mitglieder im Schnitt 3,13 %. Die Spanne: 2,18 % bis 4,39 %, bei identischen Grundleistungen.",
+                d: "Amtlich festgelegt sind 2,9 % Zusatzbeitrag – real zahlen Mitglieder im Schnitt 3,13 %. Die Spanne: 2,18 % bis 4,39 %, bei identischen Grundleistungen.",
               },
               {
                 chip: "dein Recht",
@@ -495,7 +496,7 @@ export default function KassenCheck() {
       <section className="px-5 py-16">
         <div className="mx-auto" style={{ maxWidth: 720 }}>
           <h2
-            className="mb-8 leading-tight"
+            className="mb-8 leading-tight text-balance"
             style={{ fontSize: "clamp(1.6rem, 4vw, 2.3rem)", letterSpacing: "-0.02em" }}
           >
             <span className="font-medium">Kurz gefragt. </span>
@@ -505,7 +506,7 @@ export default function KassenCheck() {
             {[
               {
                 q: "Verliere ich Leistungen bei einer günstigeren Kasse?",
-                a: "Nein. Rund 95 % der Leistungen sind gesetzlich festgelegt und überall identisch. Unterschiede gibt es nur bei Extras wie Zahnreinigung oder Bonusprogrammen.",
+                a: "Nein. Rund 95 % der Leistungen sind gesetzlich festgelegt und überall identisch. Unterschiede gibt es nur bei Extras wie Zahnreinigung oder Bonusprogrammen.",
               },
               {
                 q: "Kann mich eine Kasse ablehnen?",
@@ -535,7 +536,7 @@ export default function KassenCheck() {
       <section className="px-5 py-16" style={{ background: C.card }}>
         <div className="mx-auto text-center" style={{ maxWidth: 640 }}>
           <h2
-            className="mb-3 leading-tight"
+            className="mb-3 leading-tight text-balance"
             style={{ fontSize: "clamp(1.6rem, 4vw, 2.3rem)", letterSpacing: "-0.02em" }}
           >
             <span className="font-medium">Noch unsicher? </span>
@@ -568,12 +569,12 @@ export default function KassenCheck() {
         >
           <p className="mb-2">
             <strong style={{ color: C.ink }}>Methodik:</strong> Differenz zwischen deinem
-            Zusatzbeitrag und dem günstigsten Satz 2026 (2,18 %), halbiert
+            Zusatzbeitrag und dem günstigsten Satz 2026 (2,18 %), halbiert
             (Arbeitnehmeranteil), auf dein beitragspflichtiges Einkommen (max.{" "}
-            {fmt(BBG_MONAT, 2)} € / Monat). „Bis zu 770 €“ = Maximalfall: teuerste Kasse
-            (4,39 %) zur günstigsten, Einkommen an der Beitragsbemessungsgrenze.
-            Amtlicher durchschnittlicher Zusatzbeitrag (Schätzerkreis/BMG): 2,9 %;
-            realer, mitgliedergewichteter Durchschnitt: 3,13 %. Datenstand Juli
+            {fmt(BBG_MONAT, 2)} € / Monat). „Bis zu 770 €“ = Maximalfall: teuerste Kasse
+            (4,39 %) zur günstigsten, Einkommen an der Beitragsbemessungsgrenze.
+            Amtlicher durchschnittlicher Zusatzbeitrag (Schätzerkreis/BMG): 2,9 %;
+            realer, mitgliedergewichteter Durchschnitt: 3,13 %. Datenstand Juli
             2026. Unverbindliche Modellrechnung.
           </p>
           <p className="mb-2">

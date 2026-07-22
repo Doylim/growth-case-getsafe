@@ -7,7 +7,7 @@ import { track } from "../../lib/track";
 // Kampagne 2 (Value-Play): PKV-Fit-Check – GKV→PKV-Wechsel in 5 Fragen.
 // Ehrlichkeitslogik mit drei Ergebniszuständen + hartem Eligibility-Gate.
 // Getsafe-Design-Look. Konzept-Demo, keine Seite der Getsafe GmbH.
-// JAEG 2026: 77.400 € (BMG). Datenstand Juli 2026.
+// JAEG 2026: 77.400 € (BMG). Datenstand Juli 2026.
 // ─────────────────────────────────────────────────────────────────────────────
 
 const C = {
@@ -39,7 +39,7 @@ const FRAGEN = [
     frage: "Wo liegt dein Jahresbrutto?",
     nur: "angestellt",
     optionen: [
-      { key: "ueber", label: "Über 77.400 €", sub: "über der Versicherungspflichtgrenze 2026" },
+      { key: "ueber", label: "Über 77.400 €", sub: "über der Versicherungspflichtgrenze 2026" },
       { key: "knapp", label: "Knapp darunter", sub: "Erhöhung oder Jobwechsel absehbar" },
       { key: "unter", label: "Deutlich darunter", sub: "" },
     ],
@@ -67,7 +67,7 @@ const FRAGEN = [
     frage: "Wie schätzt du dein Einkommen langfristig ein?",
     optionen: [
       { key: "stabil", label: "Dauerhaft stabil auf diesem Niveau oder höher", sub: "" },
-      { key: "unsicher", label: "Schwer zu sagen", sub: "z. B. Teilzeit, Auszeit oder Wechsel denkbar" },
+      { key: "unsicher", label: "Schwer zu sagen", sub: "z. B. Teilzeit, Auszeit oder Wechsel denkbar" },
     ],
   },
 ];
@@ -132,14 +132,14 @@ const ERGEBNISSE = {
     chip: "ehrliche Antwort",
     chipStyle: "amber",
     titel: "Die GKV ist für dich vermutlich die bessere Wahl.",
-    text: "Familie, Einkommensplanung oder Alter sprechen bei dir eher gegen einen Wechsel. Was sich fast immer lohnt: innerhalb der GKV die Kasse wechseln – gleiche Grundleistungen, bis zu 770 € weniger pro Jahr.",
+    text: "Familie, Einkommensplanung oder Alter sprechen bei dir eher gegen einen Wechsel. Was sich fast immer lohnt: innerhalb der GKV die Kasse wechseln – gleiche Grundleistungen, bis zu 770 € weniger pro Jahr.",
     cta: "Zum Kassen-Check (GKV)",
   },
   gate: {
     chip: "noch nicht möglich",
     chipStyle: "amber",
     titel: "Aktuell bist du nicht wechselberechtigt.",
-    text: "Als Angestellte:r brauchst du ein Jahresbrutto über 77.400 € (Versicherungspflichtgrenze 2026). Bis dahin: GKV-Kasse wechseln lohnt fast immer – gleiche Grundleistungen, bis zu 770 € Ersparnis pro Jahr.",
+    text: "Als Angestellte:r brauchst du ein Jahresbrutto über 77.400 € (Versicherungspflichtgrenze 2026). Bis dahin: GKV-Kasse wechseln lohnt fast immer – gleiche Grundleistungen, bis zu 770 € Ersparnis pro Jahr.",
     cta: "Zum Kassen-Check (GKV)",
   },
   bald: {
@@ -218,7 +218,7 @@ export default function PkvFitCheck() {
         >
           Neu
         </span>
-        Versicherungspflichtgrenze 2026: 77.400 € – prüfe deine PKV-Option
+        Versicherungspflichtgrenze 2026: 77.400 € – prüfe deine PKV-Option
       </div>
 
       {/* Nav */}
@@ -246,21 +246,29 @@ export default function PkvFitCheck() {
             <span className="cursor-default">Hilfe</span>
           </div>
         </div>
-        <span
-          className="rounded-full px-4 py-2 text-sm font-semibold text-white cursor-default"
-          style={{ background: C.ink }}
-        >
-          Download App
-        </span>
+        <div className="flex items-center gap-2.5">
+          <span
+            className="hidden sm:inline-block rounded-full px-4 py-2 text-sm font-semibold cursor-default"
+            style={{ border: `1px solid ${C.line}` }}
+          >
+            Login
+          </span>
+          <span
+            className="rounded-full px-4 py-2 text-sm font-semibold text-white cursor-default"
+            style={{ background: C.ink }}
+          >
+            Download App
+          </span>
+        </div>
       </nav>
 
       {/* ── HERO + CHECK ── */}
-      <main className="px-5 pt-10 pb-16 sm:pt-14 sm:pb-24">
+      <main className="px-5 pt-10 pb-16 sm:pt-16 sm:pb-24">
         <div className="mx-auto" style={{ maxWidth: 640 }}>
           {!ergebnis && (
             <>
               <h1
-                className="leading-[1.08] mb-4"
+                className="leading-[1.08] mb-4 text-balance"
                 style={{
                   fontSize: "clamp(1.9rem, 5vw, 2.8rem)",
                   letterSpacing: "-0.03em",
@@ -332,7 +340,7 @@ export default function PkvFitCheck() {
           {/* ── ERGEBNIS ── */}
           {ergebnis && E && (
             <div
-              className="rounded-[28px] p-6 sm:p-8"
+              className="rounded-[28px] p-6 sm:p-7"
               style={{
                 background: C.paper,
                 border: `1px solid ${C.line}`,
@@ -358,7 +366,7 @@ export default function PkvFitCheck() {
                 {E.chip}
               </span>
               <h2
-                className="font-black leading-tight mb-3"
+                className="font-black leading-tight mb-3 text-balance"
                 style={{ fontSize: "clamp(1.5rem, 4vw, 2rem)" }}
               >
                 {E.titel}
@@ -412,7 +420,7 @@ export default function PkvFitCheck() {
               </button>
               <button
                 onClick={neustart}
-                className="w-full text-sm font-semibold underline underline-offset-2 cursor-pointer"
+                className="w-full text-sm font-semibold py-2 -my-2 underline underline-offset-2 cursor-pointer"
                 style={{ color: C.inkSoft }}
               >
                 Check neu starten
@@ -441,7 +449,7 @@ export default function PkvFitCheck() {
         >
           <p className="mb-2">
             <strong style={{ color: C.ink }}>Grundlagen:</strong>{" "}
-            Versicherungspflichtgrenze (JAEG) 2026: 77.400 € laut
+            Versicherungspflichtgrenze (JAEG) 2026: 77.400 € laut
             Bundesgesundheitsministerium. Der Check ist eine grobe Ersteinschätzung
             auf Basis von 5 Angaben – keine Beratung, keine Tarifberechnung, keine
             Empfehlung im Sinne des VVG. Verbindliche Aussagen erfordern eine

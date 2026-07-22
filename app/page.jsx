@@ -26,7 +26,7 @@ function Chip({ children }) {
       className="inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-bold"
       style={{ background: C.greenSoft, color: C.greenDark }}
     >
-      <span className="rounded-full" style={{ width: 7, height: 7, background: C.green }} />
+      <span className="rounded-full" style={{ width: 8, height: 8, background: C.green }} />
       {children}
     </span>
   );
@@ -52,7 +52,7 @@ export default function Home() {
             Bewerbungsarbeit · (Senior) Growth Creative (AI-native) · Getsafe
           </p>
           <h1
-            className="font-black leading-[1.1] text-white mb-6"
+            className="font-black leading-[1.1] text-white mb-6 text-balance"
             style={{ fontSize: "clamp(1.9rem, 5vw, 3rem)", letterSpacing: "-0.03em" }}
           >
             Ich habe kein Anschreiben geschrieben.
@@ -70,7 +70,7 @@ export default function Home() {
           </p>
           <p className="text-sm" style={{ color: "#8A8F8A" }}>
             Beide Strecken sind unten live und klickbar. Gebaut an Abenden einer Woche,
-            Gesamtkosten unter 20 €, AI als Betriebssystem.
+            Gesamtkosten unter 20 €, AI als Betriebssystem.
           </p>
         </div>
       </header>
@@ -78,7 +78,7 @@ export default function Home() {
       {/* ── DEMOS ── */}
       <section className="px-5 py-14 sm:py-16">
         <div className="mx-auto" style={{ maxWidth: 780 }}>
-          <h2 className="font-black text-2xl mb-6" style={{ letterSpacing: "-0.02em" }}>
+          <h2 className="font-black text-2xl mb-6 text-balance" style={{ letterSpacing: "-0.02em" }}>
             Die beiden Demos
           </h2>
           <div className="grid sm:grid-cols-2 gap-4">
@@ -92,7 +92,7 @@ export default function Home() {
               <p className="font-bold text-lg mt-3 mb-1">Kassen-Check (GKV)</p>
               <p className="text-sm leading-relaxed mb-4" style={{ color: C.inkSoft }}>
                 Sparpotenzial in 10 Sekunden, Live-Zähler „bereits verschenkt“,
-                Übergabe in den Wechsel-Flow – der „Spare 1.440 €“-Moment vor der
+                Übergabe in den Wechsel-Flow – der „Spare 1.440 €“-Moment vor der
                 Registrierung.
               </p>
               <span
@@ -111,7 +111,7 @@ export default function Home() {
               <Chip>Wert-Play</Chip>
               <p className="font-bold text-lg mt-3 mb-1">PKV-Fit-Check</p>
               <p className="text-sm leading-relaxed mb-4" style={{ color: C.inkSoft }}>
-                5 Fragen, ehrliche Fit-Logik mit Eligibility-Gate (77.400 €), sechs
+                5 Fragen, ehrliche Fit-Logik mit Eligibility-Gate (77.400 €), sechs
                 Ergebnispfade – filtert 20–40-€-Klicks, bevor eure Beratung Zeit
                 investiert.
               </p>
@@ -140,7 +140,7 @@ export default function Home() {
           >
             Nicht nur konzipiert – produziert
           </p>
-          <h2 className="font-black text-2xl mb-3 text-white" style={{ letterSpacing: "-0.02em" }}>
+          <h2 className="font-black text-2xl mb-3 text-white text-balance" style={{ letterSpacing: "-0.02em" }}>
             Die Creatives zur Kampagne
           </h2>
           <p className="text-sm leading-relaxed mb-8" style={{ color: "#C9CCC9" }}>
@@ -150,7 +150,7 @@ export default function Home() {
           </p>
 
           {/* Videos */}
-          <div className="grid grid-cols-2 gap-4 mb-3">
+          <div className="grid sm:grid-cols-2 gap-4 mb-3">
             <div>
               <video
                 controls
@@ -160,7 +160,7 @@ export default function Home() {
                 style={{ aspectRatio: "9/16", background: "#000" }}
                 src="/creatives/kassen-check-spot-vo.mp4"
               />
-              <p className="text-xs mt-2 font-semibold text-white">Der Spot · 21 s</p>
+              <p className="text-xs mt-2 font-semibold text-white">Der Spot · 21 s</p>
               <p className="text-xs" style={{ color: "#8A8F8A" }}>
                 5 Szenen nach Skript, Voiceover, Untertitel – Ton an!
               </p>
@@ -174,7 +174,7 @@ export default function Home() {
                 style={{ aspectRatio: "9/16", background: "#000" }}
                 src="/creatives/hook1-zaehler.mp4"
               />
-              <p className="text-xs mt-2 font-semibold text-white">Hook „Der Zähler" · 11 s</p>
+              <p className="text-xs mt-2 font-semibold text-white">Hook „Der Zähler“ · 11 s</p>
               <p className="text-xs" style={{ color: "#8A8F8A" }}>
                 Paid-Social-Hook: Count-up auf den echten Seit-Januar-Wert
               </p>
@@ -185,7 +185,7 @@ export default function Home() {
           <p className="text-sm font-bold text-white mt-8 mb-3">
             Paid Social · drei Feed-Varianten
           </p>
-          <div className="grid grid-cols-3 gap-3">
+          <div className="grid sm:grid-cols-3 gap-4 items-start">
             <Image src="/creatives/meta-v1.png" alt="Meta-Anzeige: Zähler-Hook mit 428,10 € seit Januar" width={1080} height={1310} className="rounded-xl w-full h-auto" />
             <Image src="/creatives/meta-v2.png" alt="Meta-Anzeige: Vergleich zweier Kassen, 2,18 % vs. 4,39 %" width={1080} height={1270} className="rounded-xl w-full h-auto" />
             <Image src="/creatives/meta-v3.png" alt="Meta-Anzeige: PKV-Eligibility-Frage über 77.400 € Jahresbrutto" width={1080} height={1272} className="rounded-xl w-full h-auto" />
@@ -195,7 +195,7 @@ export default function Home() {
           <p className="text-sm font-bold text-white mt-8 mb-3">
             Paid Search · RSA mit Eligibility-Filter vor dem teuren Klick
           </p>
-          <div className="grid sm:grid-cols-2 gap-3">
+          <div className="grid sm:grid-cols-2 gap-4">
             <Image src="/creatives/rsa-gkv.png" alt="Google-Anzeige zur Suche 'krankenkasse zu teuer'" width={1304} height={634} className="rounded-xl w-full h-auto" />
             <Image src="/creatives/rsa-pkv.png" alt="Google-Anzeige zur Suche 'gkv pkv wechseln' mit 77.400-Euro-Filter" width={1304} height={634} className="rounded-xl w-full h-auto" />
           </div>
@@ -204,7 +204,7 @@ export default function Home() {
           <p className="text-sm font-bold text-white mt-8 mb-3">
             Bestand &amp; CRM · 500.000+ Kund:innen, Media-Kosten null
           </p>
-          <div className="grid grid-cols-3 gap-3 items-start">
+          <div className="grid sm:grid-cols-3 gap-4 items-start">
             <Image src="/creatives/crm-inapp.png" alt="In-App-Karte: Zahlst du zu viel für deine Krankenkasse?" width={800} height={1120} className="rounded-xl w-full h-auto" />
             <Image src="/creatives/crm-push.png" alt="Push-Nachricht zur Januar-Beitragserhöhung mit Sonderkündigungsrecht" width={800} height={762} className="rounded-xl w-full h-auto" />
             <Image src="/creatives/crm-email.png" alt="E-Mail an das PKV-Segment: Eine Option, die die meisten nie prüfen" width={1184} height={1408} className="rounded-xl w-full h-auto" />
@@ -220,9 +220,9 @@ export default function Home() {
       </section>
 
       {/* ── SYSTEM ── */}
-      <section className="px-5 py-14" style={{ background: C.card }}>
+      <section className="px-5 py-14 sm:py-16" style={{ background: C.card }}>
         <div className="mx-auto" style={{ maxWidth: 780 }}>
-          <h2 className="font-black text-2xl mb-6" style={{ letterSpacing: "-0.02em" }}>
+          <h2 className="font-black text-2xl mb-6 text-balance" style={{ letterSpacing: "-0.02em" }}>
             Das System dahinter
           </h2>
           <div className="grid sm:grid-cols-2 gap-4">
@@ -265,12 +265,12 @@ export default function Home() {
       </section>
 
       {/* ── BUILDER-BEWEIS ── */}
-      <section className="px-5 py-14">
+      <section className="px-5 py-14 sm:py-16">
         <div className="mx-auto" style={{ maxWidth: 780 }}>
-          <h2 className="font-black text-2xl mb-2" style={{ letterSpacing: "-0.02em" }}>
+          <h2 className="font-black text-2xl mb-2 text-balance" style={{ letterSpacing: "-0.02em" }}>
             Warum ich das kann
           </h2>
-          <p className="text-sm mb-6" style={{ color: C.inkSoft }}>
+          <p className="text-sm leading-relaxed mb-6" style={{ color: C.inkSoft }}>
             Ich baue Dinge, die live sind – nicht Konzepte, die in Schubladen liegen.
           </p>
           <div className="space-y-4">
@@ -317,9 +317,9 @@ export default function Home() {
       </section>
 
       {/* ── MAKING-OF ── */}
-      <section className="px-5 py-14" style={{ background: C.card }}>
+      <section className="px-5 py-14 sm:py-16" style={{ background: C.card }}>
         <div className="mx-auto" style={{ maxWidth: 780 }}>
-          <h2 className="font-black text-2xl mb-4" style={{ letterSpacing: "-0.02em" }}>
+          <h2 className="font-black text-2xl mb-4 text-balance" style={{ letterSpacing: "-0.02em" }}>
             Making-of
           </h2>
           <p className="text-sm leading-relaxed mb-3" style={{ color: C.inkSoft }}>
@@ -329,7 +329,7 @@ export default function Home() {
             Hosting: Vercel.
           </p>
           <p className="text-sm leading-relaxed" style={{ color: C.ink }}>
-            Unter 20 € Gesamtkosten, Abende einer Woche – neben Vollzeitjob,
+            Unter 20 € Gesamtkosten, Abende einer Woche – neben Vollzeitjob,
             Vereinsvorstand und Familie.{" "}
             <strong>
               AI ist kein Trend in meinem Werkzeugkasten. Es ist der Werkzeugkasten.
