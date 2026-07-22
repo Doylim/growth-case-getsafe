@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="base.css">
+<style>
+  /* Szene 1 (3 s): Kontoauszug – die Krankenkassen-Abbuchung sticht heraus */
+  .konto {
+    width: 100%;
+    max-width: 430px;
+    border-radius: 28px;
+    border: 1px solid var(--line);
+    background: var(--paper);
+    box-shadow: 0 20px 60px rgba(17,18,16,.08);
+    padding: 26px;
+  }
+  .konto-kopf {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 18px;
+  }
+  .konto-kopf .titel { font-size: 21px; font-weight: 900; }
+  .konto-kopf .monat { font-size: 14px; color: var(--ink-soft); font-weight: 600; }
+  .zeile {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 12px;
+    border-radius: 16px;
+    opacity: 0;
+    transform: translateY(10px);
+    animation: zeile-in .35s ease forwards;
+  }
+  .zeile:nth-child(2) { animation-delay: .15s; }
+  .zeile:nth-child(3) { animation-delay: .35s; }
+  .zeile:nth-child(4) { animation-delay: .55s; }
+  .zeile:nth-child(5) { animation-delay: .75s; }
+  @keyframes zeile-in { to { opacity: 1; transform: translateY(0); } }
+  .zeile .name { font-size: 17px; font-weight: 600; }
+  .zeile .sub { font-size: 13px; color: var(--ink-soft); font-weight: 400; margin-top: 2px; }
+  .zeile .betrag { font-size: 17px; font-weight: 800; font-variant-numeric: tabular-nums; }
+  .kk {
+    background: var(--paper);
+    animation: zeile-in .35s ease .75s forwards, hervor .5s ease 1.35s forwards;
+  }
+  @keyframes hervor {
+    to {
+      background: #FDF3F2;
+      box-shadow: inset 0 0 0 2px #D92D20;
+    }
+  }
+  .kk .betrag { color: #D92D20; }
+  .marker {
+    position: absolute;
+    font-size: 15px;
+    font-weight: 800;
+    color: #D92D20;
+    right: 64px;
+    margin-top: -6px;
+    opacity: 0;
+    animation: caption-in .4s ease 1.6s forwards;
+  }
+</style>
+</head>
+<body>
+  <div class="buehne">
+    <div class="konto">
+      <div class="konto-kopf">
+        <span class="titel">Abbuchungen</span>
+        <span class="monat">Juli 2026</span>
+      </div>
+      <div class="zeile">
+        <span><span class="name">Miete</span></span>
+        <span class="betrag">−1.150,00&thinsp;€</span>
+      </div>
+      <div class="zeile">
+        <span><span class="name">Strom</span></span>
+        <span class="betrag">−84,00&thinsp;€</span>
+      </div>
+      <div class="zeile">
+        <span><span class="name">Streaming</span></span>
+        <span class="betrag">−12,99&thinsp;€</span>
+      </div>
+      <div class="zeile kk">
+        <span>
+          <span class="name">Krankenkasse</span>
+          <div class="sub">Zusatzbeitrag 4,39&thinsp;%</div>
+        </span>
+        <span class="betrag">−218,40&thinsp;€</span>
+      </div>
+    </div>
+    <p class="caption" style="animation-delay: 1.7s">
+      Diese Abbuchung ist bei dir <span class="gruen">zu hoch</span>. Vermutlich.
+    </p>
+  </div>
+</body>
+</html>

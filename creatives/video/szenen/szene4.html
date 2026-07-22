@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="base.css">
+<style>
+  /* Szene 4 (6 s): App-Flow – CTA wird gedrueckt, Haken-Animation, drei Schritte */
+  .flow {
+    width: 100%;
+    max-width: 430px;
+    border-radius: 28px;
+    border: 1px solid var(--line);
+    background: var(--paper);
+    box-shadow: 0 20px 60px rgba(17,18,16,.08);
+    padding: 30px 26px;
+    text-align: center;
+  }
+  .cta {
+    display: block;
+    width: 100%;
+    border-radius: 999px;
+    background: var(--ink);
+    color: #fff;
+    font-size: 19px;
+    font-weight: 800;
+    padding: 18px 0;
+    animation: druck .35s ease 1s;
+  }
+  @keyframes druck { 50% { transform: scale(.94); } }
+  .haken-kreis {
+    width: 110px; height: 110px;
+    margin: 26px auto 6px;
+  }
+  .haken-kreis circle {
+    fill: none;
+    stroke: var(--green);
+    stroke-width: 6;
+    stroke-dasharray: 302;
+    stroke-dashoffset: 302;
+    animation: kreis .7s ease 1.5s forwards;
+  }
+  .haken-kreis path {
+    fill: none;
+    stroke: var(--green-dark);
+    stroke-width: 8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 60;
+    stroke-dashoffset: 60;
+    animation: kreis .4s ease 2.1s forwards;
+  }
+  @keyframes kreis { to { stroke-dashoffset: 0; } }
+  .schritt {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-align: left;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--ink-soft);
+    padding: 10px 6px;
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  .schritt .haken {
+    width: 22px; height: 22px; border-radius: 999px;
+    background: var(--green-soft); color: var(--green-dark);
+    font-size: 13px; font-weight: 900;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .schritt:nth-of-type(1) { animation: schritt-in .35s ease 2.6s forwards; }
+  .schritt:nth-of-type(2) { animation: schritt-in .35s ease 3.1s forwards; }
+  .schritt:nth-of-type(3) { animation: schritt-in .35s ease 3.6s forwards; }
+  @keyframes schritt-in { to { opacity: 1; transform: translateX(0); } }
+</style>
+</head>
+<body>
+  <div class="buehne">
+    <div class="flow">
+      <button class="cta">Jetzt Kasse wechseln</button>
+      <svg class="haken-kreis" viewBox="0 0 110 110">
+        <circle cx="55" cy="55" r="48"></circle>
+        <path d="M34 57 L50 72 L78 42"></path>
+      </svg>
+      <div class="schritt"><span class="haken">✓</span> Die neue Kasse kündigt die alte</div>
+      <div class="schritt"><span class="haken">✓</span> Arbeitgeber wird elektronisch informiert</div>
+      <div class="schritt"><span class="haken">✓</span> Lückenlos versichert – per Gesetz</div>
+    </div>
+    <p class="caption" style="animation-delay: 4.2s">
+      Wechsel in <span class="gruen">5 Minuten</span>. Ohne Papierkram.
+    </p>
+  </div>
+</body>
+</html>

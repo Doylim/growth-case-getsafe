@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="base.css">
+<style>
+  /* Szene 2 (5 s): Zwei identische Leistungskarten – nur der Preis unterscheidet sich */
+  .karten { display: flex; gap: 16px; width: 100%; max-width: 470px; }
+  .karte {
+    flex: 1;
+    border-radius: 24px;
+    border: 1px solid var(--line);
+    background: var(--paper);
+    box-shadow: 0 16px 44px rgba(17,18,16,.07);
+    padding: 22px 18px;
+    opacity: 0;
+    transform: translateY(16px);
+    animation: karte-in .45s ease forwards;
+  }
+  .karte:nth-child(2) { animation-delay: .2s; }
+  @keyframes karte-in { to { opacity: 1; transform: translateY(0); } }
+  .karte .kopf { font-size: 15px; font-weight: 800; margin-bottom: 14px; }
+  .leistung {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ink-soft);
+    padding: 6px 0;
+  }
+  .leistung .haken {
+    width: 18px; height: 18px; border-radius: 999px;
+    background: var(--green-soft);
+    color: var(--green-dark);
+    font-size: 12px; font-weight: 900;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .preis {
+    margin-top: 16px;
+    border-radius: 999px;
+    text-align: center;
+    padding: 12px 0;
+    font-size: 22px;
+    font-weight: 900;
+    opacity: 0;
+    transform: scale(.7);
+  }
+  .preis.guenstig {
+    background: var(--green-dark);
+    color: #fff;
+    animation: preis-in .4s cubic-bezier(.2,1.4,.4,1) 1.4s forwards;
+  }
+  .preis.teuer {
+    background: var(--ink);
+    color: #fff;
+    animation: preis-in .4s cubic-bezier(.2,1.4,.4,1) 1.7s forwards;
+  }
+  @keyframes preis-in { to { opacity: 1; transform: scale(1); } }
+  .diff {
+    margin-top: 26px;
+    opacity: 0;
+    transform: translateY(12px);
+    animation: caption-in .45s ease 2.5s forwards;
+  }
+  .diff .pill { font-size: 21px; padding: 12px 22px; }
+</style>
+</head>
+<body>
+  <div class="buehne">
+    <div class="karten">
+      <div class="karte">
+        <div class="kopf">Kasse A</div>
+        <div class="leistung"><span class="haken">✓</span> Arztbesuche</div>
+        <div class="leistung"><span class="haken">✓</span> Krankenhaus</div>
+        <div class="leistung"><span class="haken">✓</span> Medikamente</div>
+        <div class="leistung"><span class="haken">✓</span> Vorsorge</div>
+        <div class="preis guenstig">2,18&thinsp;%</div>
+      </div>
+      <div class="karte">
+        <div class="kopf">Kasse B</div>
+        <div class="leistung"><span class="haken">✓</span> Arztbesuche</div>
+        <div class="leistung"><span class="haken">✓</span> Krankenhaus</div>
+        <div class="leistung"><span class="haken">✓</span> Medikamente</div>
+        <div class="leistung"><span class="haken">✓</span> Vorsorge</div>
+        <div class="preis teuer">4,39&thinsp;%</div>
+      </div>
+    </div>
+    <div class="diff">
+      <span class="pill"><span class="punkt"></span> bis zu 770&thinsp;€ Unterschied pro Jahr</span>
+    </div>
+    <p class="caption" style="animation-delay: 3s">
+      <span class="gruen">Gleiche Grundleistungen.</span> Nicht der gleiche Preis.
+    </p>
+  </div>
+</body>
+</html>
