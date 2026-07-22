@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { track } from "../lib/track";
 
 // Case-Seite: Klammer der Bewerbungsarbeit. These → Demos → System → Roadmap →
@@ -126,6 +127,94 @@ export default function Home() {
             Beide Strecken sind verzahnt: Gutverdiener sehen im Kassen-Check die
             PKV-Option, wer nicht in die PKV passt, landet im Kassen-Check. Kein
             Lead geht verloren.
+          </p>
+        </div>
+      </section>
+
+      {/* ── CREATIVES ── */}
+      <section className="px-5 py-14 sm:py-16" style={{ background: C.ink }}>
+        <div className="mx-auto" style={{ maxWidth: 780 }}>
+          <p
+            className="text-xs font-semibold uppercase mb-3"
+            style={{ color: "#7CE0B3", letterSpacing: "0.14em" }}
+          >
+            Nicht nur konzipiert – produziert
+          </p>
+          <h2 className="font-black text-2xl mb-3 text-white" style={{ letterSpacing: "-0.02em" }}>
+            Die Creatives zur Kampagne
+          </h2>
+          <p className="text-sm leading-relaxed mb-8" style={{ color: "#C9CCC9" }}>
+            Alles hier ist im AI-Stack entstanden: Szenen als Code, Playwright als
+            Kamera, ffmpeg als Schnittplatz, ElevenLabs als Sprecher. Jedes Asset
+            in Minuten reproduzierbar – Copy ändern, neu rendern, testen.
+          </p>
+
+          {/* Videos */}
+          <div className="grid grid-cols-2 gap-4 mb-3">
+            <div>
+              <video
+                controls
+                playsInline
+                preload="metadata"
+                className="w-full rounded-2xl"
+                style={{ aspectRatio: "9/16", background: "#000" }}
+                src="/creatives/kassen-check-spot-vo.mp4"
+              />
+              <p className="text-xs mt-2 font-semibold text-white">Der Spot · 21 s</p>
+              <p className="text-xs" style={{ color: "#8A8F8A" }}>
+                5 Szenen nach Skript, Voiceover, Untertitel – Ton an!
+              </p>
+            </div>
+            <div>
+              <video
+                controls
+                playsInline
+                preload="metadata"
+                className="w-full rounded-2xl"
+                style={{ aspectRatio: "9/16", background: "#000" }}
+                src="/creatives/hook1-zaehler.mp4"
+              />
+              <p className="text-xs mt-2 font-semibold text-white">Hook „Der Zähler" · 11 s</p>
+              <p className="text-xs" style={{ color: "#8A8F8A" }}>
+                Paid-Social-Hook: Count-up auf den echten Seit-Januar-Wert
+              </p>
+            </div>
+          </div>
+
+          {/* Paid Social */}
+          <p className="text-sm font-bold text-white mt-8 mb-3">
+            Paid Social · drei Feed-Varianten
+          </p>
+          <div className="grid grid-cols-3 gap-3">
+            <Image src="/creatives/meta-v1.png" alt="Meta-Anzeige: Zähler-Hook mit 428,10 € seit Januar" width={1080} height={1310} className="rounded-xl w-full h-auto" />
+            <Image src="/creatives/meta-v2.png" alt="Meta-Anzeige: Vergleich zweier Kassen, 2,18 % vs. 4,39 %" width={1080} height={1270} className="rounded-xl w-full h-auto" />
+            <Image src="/creatives/meta-v3.png" alt="Meta-Anzeige: PKV-Eligibility-Frage über 77.400 € Jahresbrutto" width={1080} height={1272} className="rounded-xl w-full h-auto" />
+          </div>
+
+          {/* Paid Search */}
+          <p className="text-sm font-bold text-white mt-8 mb-3">
+            Paid Search · RSA mit Eligibility-Filter vor dem teuren Klick
+          </p>
+          <div className="grid sm:grid-cols-2 gap-3">
+            <Image src="/creatives/rsa-gkv.png" alt="Google-Anzeige zur Suche 'krankenkasse zu teuer'" width={1304} height={634} className="rounded-xl w-full h-auto" />
+            <Image src="/creatives/rsa-pkv.png" alt="Google-Anzeige zur Suche 'gkv pkv wechseln' mit 77.400-Euro-Filter" width={1304} height={634} className="rounded-xl w-full h-auto" />
+          </div>
+
+          {/* CRM */}
+          <p className="text-sm font-bold text-white mt-8 mb-3">
+            Bestand &amp; CRM · 500.000+ Kund:innen, Media-Kosten null
+          </p>
+          <div className="grid grid-cols-3 gap-3 items-start">
+            <Image src="/creatives/crm-inapp.png" alt="In-App-Karte: Zahlst du zu viel für deine Krankenkasse?" width={800} height={1120} className="rounded-xl w-full h-auto" />
+            <Image src="/creatives/crm-push.png" alt="Push-Nachricht zur Januar-Beitragserhöhung mit Sonderkündigungsrecht" width={800} height={762} className="rounded-xl w-full h-auto" />
+            <Image src="/creatives/crm-email.png" alt="E-Mail an das PKV-Segment: Eine Option, die die meisten nie prüfen" width={1184} height={1408} className="rounded-xl w-full h-auto" />
+          </div>
+
+          <p className="text-xs mt-8 leading-relaxed" style={{ color: "#8A8F8A" }}>
+            Und alles ist verkabelt: Die Demos tragen ein cookieloses Event-Tracking
+            entlang der KPI-Kette – vom Rechner-Start über die PKV-Weiche bis zum
+            Beratungs-Klick. Kein Consent-Banner nötig, keine personenbezogenen
+            Daten, aber jede Conversion-Frage beantwortbar.
           </p>
         </div>
       </section>

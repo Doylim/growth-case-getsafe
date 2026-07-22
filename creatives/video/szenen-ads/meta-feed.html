@@ -31,8 +31,18 @@
   .avatar .punkt { width: 5px; height: 5px; border-radius: 999px; background: var(--green); margin: 10px 0 0 1px; }
   .konto-name { font-size: 14px; font-weight: 700; color: var(--ink); }
   .gesponsert { font-size: 12px; color: var(--ink-soft); }
-  .visual { position: relative; width: 100%; height: 540px; background: var(--card);
-    display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 36px; }
+  .visual { position: relative; width: 100%; height: 430px;
+    background:
+      radial-gradient(circle at 85% 12%, rgba(18,183,106,.14), transparent 45%),
+      radial-gradient(circle at 8% 90%, rgba(18,183,106,.10), transparent 40%),
+      var(--card);
+    display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 28px; }
+  .visual.dunkel {
+    background:
+      radial-gradient(circle at 85% 10%, rgba(18,183,106,.25), transparent 50%),
+      radial-gradient(circle at 10% 95%, rgba(124,224,179,.12), transparent 45%),
+      var(--ink);
+  }
   .text-zeile { padding: 12px 14px 4px; font-size: 13.5px; line-height: 1.45; color: var(--ink); }
   .cta-riegel {
     display: flex; justify-content: space-between; align-items: center;
@@ -49,10 +59,10 @@
   /* Visual-Bausteine */
   .karte {
     background: var(--paper); border: 1px solid var(--line); border-radius: 24px;
-    box-shadow: 0 16px 44px rgba(17,18,16,.08); padding: 26px; text-align: center; width: 100%;
+    box-shadow: 0 20px 50px rgba(17,18,16,.12); padding: 28px; text-align: center; width: 100%;
   }
   .label { font-size: 15px; font-weight: 600; color: var(--ink-soft); }
-  .riesig { font-size: 54px; font-weight: 900; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
+  .riesig { font-size: 62px; font-weight: 900; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
   .pillchen {
     display: inline-flex; align-items: center; gap: 7px; border-radius: 999px;
     padding: 7px 14px; font-size: 14px; font-weight: 800;
@@ -63,7 +73,7 @@
   .duo .karte { flex: 1; padding: 20px 14px; }
   .duo .haekchen { font-size: 12.5px; font-weight: 600; color: var(--ink-soft); padding: 3px 0; }
   .duo .preis { border-radius: 999px; color: #fff; font-weight: 900; font-size: 19px; padding: 9px 0; margin-top: 12px; }
-  .frage-gross { font-size: 40px; font-weight: 900; letter-spacing: -0.03em; text-align: center; line-height: 1.15; }
+  .frage-gross { font-size: 46px; font-weight: 900; letter-spacing: -0.03em; text-align: center; line-height: 1.12; }
 </style>
 </head>
 <body>
@@ -84,7 +94,6 @@
     </div>
     <p class="text-zeile">
       Während du scrollst, verschenkst du vielleicht gerade Geld an deine Krankenkasse.
-      Gleiche Grundleistungen, bis zu 770&thinsp;€ Unterschied pro Jahr.
     </p>
     <div class="cta-riegel">
       <span class="headline">Kassen-Check: dein Sparpotenzial in 10 Sekunden</span>
@@ -120,7 +129,6 @@
     </div>
     <p class="text-zeile">
       Deine Kasse darf mehr kosten – mehr leisten muss sie dafür nicht.
-      Check in 10 Sekunden, was du sparst.
     </p>
     <div class="cta-riegel">
       <span class="headline">Bis zu 770&thinsp;€/Jahr sparen – Wechsel in 5 Minuten</span>
@@ -135,13 +143,12 @@
       <div class="avatar">g<span class="punkt"></span></div>
       <div><div class="konto-name">getsafe</div><div class="gesponsert">Gesponsert</div></div>
     </div>
-    <div class="visual">
-      <p class="frage-gross">Über <span style="color:var(--green-dark)">77.400&thinsp;€</span><br>Jahresbrutto?</p>
-      <span class="pillchen" style="margin-top:22px"><span class="punkt"></span> Dann hast du eine Option, die die meisten nie prüfen</span>
+    <div class="visual dunkel">
+      <p class="frage-gross" style="color:#fff">Über <span style="color:#7CE0B3">77.400&thinsp;€</span><br>Jahresbrutto?</p>
+      <span class="pillchen" style="margin-top:22px"><span class="punkt"></span> Die Option, die die meisten nie prüfen</span>
     </div>
     <p class="text-zeile">
-      Die PKV lohnt sich nicht für jeden – für manche aber sehr. 5 ehrliche Fragen zeigen dir,
-      ob sie zu dir passt. Und wann du besser in der GKV bleibst.
+      5 ehrliche Fragen zeigen dir, ob die PKV zu dir passt – und wann besser nicht.
     </p>
     <div class="cta-riegel">
       <span class="headline">PKV-Fit-Check – ehrlich statt Verkaufsdruck</span>
