@@ -7,11 +7,11 @@ const FF = require("ffmpeg-static");
 
 const DIR = path.join(__dirname, "aufnahmen");
 const PLAN = [
-  { name: "szene1", dauer: 3 },
-  { name: "szene2", dauer: 5 },
-  { name: "szene3", dauer: 7 },
-  { name: "szene4", dauer: 6 },
-  { name: "szene5", dauer: 4 },
+  { name: "szene1", dauer: 2.8 },
+  { name: "szene2", dauer: 4.2 },
+  { name: "szene3", dauer: 5.5 },
+  { name: "szene4", dauer: 4.7 },
+  { name: "szene5", dauer: 3.5 },
 ];
 
 // 1. Jede Szene: letzte N Sekunden behalten, hochskalieren, als MP4-Zwischenclip
@@ -40,6 +40,6 @@ execFileSync(FF, [
   "-y", "-f", "concat", "-safe", "0",
   "-i", liste,
   "-c", "copy", "-movflags", "+faststart",
-  path.join(__dirname, "kassen-check-spot-25s.mp4"),
+  path.join(__dirname, "kassen-check-spot.mp4"),
 ]);
-console.log("kassen-check-spot-25s.mp4 fertig");
+console.log("kassen-check-spot.mp4 fertig");

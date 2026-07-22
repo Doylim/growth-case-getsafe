@@ -16,11 +16,11 @@ const dateiUrl = (name) =>
 
 // Szenenplan: Quelle + Dauer (ms) nach dem Videoskript im Konzept
 const PLAN = [
-  { name: "szene1", url: dateiUrl("szene1.html"), dauer: 3000 },
-  { name: "szene2", url: dateiUrl("szene2.html"), dauer: 5000 },
-  { name: "szene3", url: "http://localhost:3000/kassen-check", dauer: 7000, live: true },
-  { name: "szene4", url: dateiUrl("szene4.html"), dauer: 6000 },
-  { name: "szene5", url: dateiUrl("szene5.html"), dauer: 4000 },
+  { name: "szene1", url: dateiUrl("szene1.html"), dauer: 2800 },
+  { name: "szene2", url: dateiUrl("szene2.html"), dauer: 4200 },
+  { name: "szene3", url: "http://localhost:3000/kassen-check", dauer: 5500, live: true },
+  { name: "szene4", url: dateiUrl("szene4.html"), dauer: 4700 },
+  { name: "szene5", url: dateiUrl("szene5.html"), dauer: 3500 },
 ];
 
 // Szene 3: Regler ziehen, Ergebnis live, Untertitel einblenden
@@ -28,7 +28,7 @@ async function szene3Regie(page) {
   // Untertitel im Look der anderen Szenen injizieren
   await page.evaluate(() => {
     const cap = document.createElement("div");
-    cap.textContent = "Zieh zwei Regler. Sieh, was du verschenkst.";
+    cap.textContent = "Zwei Regler. 10 Sekunden. Deine Ersparnis.";
     cap.style.cssText = [
       "position:fixed", "left:24px", "right:24px", "bottom:64px", "z-index:9999",
       "text-align:center", "font-size:29px", "line-height:1.25", "font-weight:900",

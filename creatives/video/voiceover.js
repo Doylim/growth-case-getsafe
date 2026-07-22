@@ -22,16 +22,17 @@ if (!KEY) {
   process.exit(1);
 }
 
-// Deutsche Stimme, warm (ElevenLabs Multilingual v2)
-const VOICE_ID = process.env.ELEVENLABS_VOICE_ID || "EXAVITQu4vr4xnSDxMaL";
+// Maennliche Stimme, natuerlicher Erzaehlton (ElevenLabs "Daniel", Multilingual v2)
+const VOICE_ID = process.env.ELEVENLABS_VOICE_ID || "onwK4e9ZLuTAKqWW03F9";
 
-// Zeilen + Startzeitpunkte (Sekunden) nach dem Videoskript
+// Zeilen + Startzeitpunkte (Sekunden) – Timeline der gestrafften Fassung:
+// S1 0-2,8 · S2 2,8-7,0 · S3 7,0-12,5 · S4 12,5-17,2 · S5 17,2-20,7
 const ZEILEN = [
-  { t: 0.3, text: "Dieser Abzug ist bei dir zu hoch. Vermutlich." },
-  { t: 3.4, text: "Gleiche Grundleistungen. Bis zu 770 Euro Unterschied pro Jahr." },
-  { t: 8.6, text: "Zieh zwei Regler. Sieh, was du verschenkst." },
-  { t: 15.4, text: "Wechsel in fünf Minuten. Die neue Kasse kündigt die alte." },
-  { t: 21.4, text: "Kassen-Check. Ohne Papierkram." },
+  { t: 0.25, text: "Hier verlierst du jeden Monat Geld." },
+  { t: 3.1, text: "Bis zu 770 Euro im Jahr – zurück in deiner Tasche." },
+  { t: 7.4, text: "Zwei Regler. Zehn Sekunden. Deine Ersparnis." },
+  { t: 12.9, text: "Wechseln? Fünf Minuten. Den Rest übernimmt die neue Kasse." },
+  { t: 17.5, text: "Kassen-Check. Hol dir dein Geld zurück." },
 ];
 
 const DIR = path.join(__dirname, "voiceover");
@@ -48,7 +49,7 @@ fs.mkdirSync(DIR, { recursive: true });
         body: JSON.stringify({
           text: ZEILEN[i].text,
           model_id: "eleven_multilingual_v2",
-          voice_settings: { stability: 0.5, similarity_boost: 0.75 },
+          voice_settings: { stability: 0.4, similarity_boost: 0.8, style: 0.25 },
         }),
       }
     );
@@ -61,7 +62,7 @@ fs.mkdirSync(DIR, { recursive: true });
   }
 
   // 2. Zeitversetzt mischen und unter das Video legen
-  const inputs = ["-i", path.join(__dirname, "kassen-check-spot-25s.mp4")];
+  const inputs = ["-i", path.join(__dirname, "kassen-check-spot.mp4")];
   ZEILEN.forEach((_, i) => inputs.push("-i", path.join(DIR, `zeile${i + 1}.mp3`)));
   const delays = ZEILEN.map(
     (z, i) => `[${i + 1}:a]adelay=${Math.round(z.t * 1000)}|${Math.round(z.t * 1000)}[a${i}]`
@@ -73,8 +74,8 @@ fs.mkdirSync(DIR, { recursive: true });
     `${delays};${mix}amix=inputs=${ZEILEN.length}:normalize=0,apad[aout]`,
     "-map", "0:v", "-map", "[aout]",
     "-c:v", "copy", "-c:a", "aac", "-b:a", "160k",
-    "-t", "25", "-movflags", "+faststart",
-    path.join(__dirname, "kassen-check-spot-25s-vo.mp4"),
+    "-t", "20.7", "-movflags", "+faststart",
+    path.join(__dirname, "kassen-check-spot-vo.mp4"),
   ]);
-  console.log("kassen-check-spot-25s-vo.mp4 fertig");
+  console.log("kassen-check-spot-vo.mp4 fertig");
 })();
