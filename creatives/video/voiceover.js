@@ -29,7 +29,7 @@ const VOICE_ID = process.env.ELEVENLABS_VOICE_ID || "onwK4e9ZLuTAKqWW03F9";
 // S1 0-2,8 · S2 2,8-7,0 · S3 7,0-12,5 · S4 12,5-17,2 · S5 17,2-20,7
 const ZEILEN = [
   { t: 0.25, text: "Hier verlierst du jeden Monat Geld." },
-  { t: 3.1, text: "Bis zu 770 Euro im Jahr – zurück in deiner Tasche." },
+  { t: 3.1, text: "Bis zu 770 Euro im Jahr – zurück in deine Tasche." },
   { t: 7.4, text: "Zwei Regler. Zehn Sekunden. Deine Ersparnis." },
   { t: 12.9, text: "Wechseln? Fünf Minuten. Den Rest übernimmt die neue Kasse." },
   { t: 17.5, text: "Kassen-Check. Hol dir dein Geld zurück." },
