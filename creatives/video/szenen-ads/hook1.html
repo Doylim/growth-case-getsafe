@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../szenen/base.css">
+<style>
+  /* Hook 1 „Der Zähler" (11 s): Behauptung → Count-up → CTA.
+     428,10 € = Maximalfall 770 €/Jahr × Jahresanteil bis 22. Juli (Methodik der LP). */
+  /* Alle Animationen pausieren, bis Playwright das Start-Signal gibt –
+     sonst laeuft der Anfang waehrend der Ladezeit unsichtbar ab */
+  body:not(.start) * { animation-play-state: paused !important; }
+  .beat { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 48px 40px; opacity: 0; }
+  .beat1 { animation: beat-zeigen 0s linear 0s forwards, beat-weg 0s linear 2.6s forwards; }
+  .beat2 { animation: beat-zeigen 0s linear 2.6s forwards, beat-weg 0s linear 7.8s forwards; }
+  .beat3 { animation: beat-zeigen 0s linear 7.8s forwards; }
+  @keyframes beat-zeigen { to { opacity: 1; } }
+  @keyframes beat-weg { to { opacity: 0; } }
+
+  .gross {
+    font-size: 44px;
+    line-height: 1.18;
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    text-align: center;
+    text-wrap: balance;
+  }
+  .gross .gruen { color: var(--green-dark); }
+
+  .zaehler-karte {
+    width: 100%;
+    max-width: 430px;
+    border-radius: 28px;
+    border: 1px solid var(--line);
+    background: var(--paper);
+    box-shadow: 0 20px 60px rgba(17,18,16,.08);
+    padding: 34px 28px;
+    text-align: center;
+  }
+  .zaehler-label { font-size: 17px; font-weight: 600; color: var(--ink-soft); margin-bottom: 12px; }
+  .zaehler-wert {
+    font-size: 64px;
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    font-variant-numeric: tabular-nums;
+    color: #D92D20;
+  }
+  .zaehler-sub { font-size: 14px; color: var(--ink-soft); margin-top: 14px; }
+  .beat2 .caption { animation-delay: 5.6s; }
+
+  .cta-pill {
+    display: inline-block;
+    border-radius: 999px;
+    background: var(--ink);
+    color: #fff;
+    font-size: 21px;
+    font-weight: 800;
+    padding: 18px 34px;
+    margin-top: 26px;
+    animation: pochen 1.2s ease 9.2s 2;
+  }
+  @keyframes pochen { 50% { transform: scale(1.05); } }
+  .marke { display: flex; align-items: center; gap: 6px; margin-bottom: 10px; }
+  .marke .wort { font-size: 34px; font-weight: 900; letter-spacing: -0.04em; }
+  .marke .punkt { width: 10px; height: 10px; border-radius: 999px; background: var(--green); margin-top: 12px; }
+  .abbinder-hinweis {
+    position: absolute;
+    left: 40px; right: 40px; bottom: 40px;
+    text-align: center;
+    font-size: 12px;
+    line-height: 1.5;
+    color: var(--ink-soft);
+  }
+</style>
+</head>
+<body>
+  <div class="buehne" style="padding: 0">
+    <div class="beat beat1">
+      <p class="gross">
+        Während du das ansiehst, verschenkst du vielleicht gerade
+        <span class="gruen">Geld an deine Krankenkasse</span>.
+      </p>
+    </div>
+
+    <div class="beat beat2">
+      <div class="zaehler-karte">
+        <p class="zaehler-label">Teuerste vs. günstigste Kasse<br>seit 1. Januar bis zu</p>
+        <p class="zaehler-wert" id="zaehler">0,00&thinsp;€</p>
+        <p class="zaehler-sub">verschenkt – bei gleichen Grundleistungen</p>
+      </div>
+      <p class="caption">Und es wird jeden Tag <span class="gruen">mehr</span>.</p>
+    </div>
+
+    <div class="beat beat3">
+      <div class="marke"><span class="wort">getsafe</span><span class="punkt"></span></div>
+      <p class="gross" style="font-size: 38px">Rechne <span class="gruen">deinen</span> aus.<br>10 Sekunden.</p>
+      <span class="cta-pill">Zum Kassen-Check</span>
+      <p class="abbinder-hinweis">
+        Maximalfall laut Methodik der Landingpage · Datenstand Juli 2026<br>
+        Konzept-Demo · Bewerbungsarbeit Norbert Sommer · keine Werbung der Getsafe GmbH
+      </p>
+    </div>
+  </div>
+  <script>
+    // Count-up auf den Seit-Januar-Maximalwert (Beat 2 beginnt bei 2,6 s)
+    const ZIEL = 428.10;
+    const DAUER = 2400;
+    const el = document.getElementById("zaehler");
+    // Wird von Playwright aufgerufen, wenn die Aufnahme wirklich laeuft
+    window.startHook = () => {
+      document.body.classList.add("start");
+      setTimeout(() => {
+        const start = performance.now();
+        const tick = (jetzt) => {
+          const p = Math.min((jetzt - start) / DAUER, 1);
+          const eased = 1 - Math.pow(1 - p, 3);
+          el.innerHTML =
+            (ZIEL * eased).toLocaleString("de-DE", {
+              minimumFractionDigits: 2,
+              maximumFractionDigits: 2,
+            }) + "&thinsp;€";
+          if (p < 1) requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+      }, 2800);
+    };
+  </script>
+</body>
+</html>

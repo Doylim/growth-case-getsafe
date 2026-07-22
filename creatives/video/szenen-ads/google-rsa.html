@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<style>
+  /* Google-RSA-Vorschau (2 Varianten) – Anzeigentexte aus dem Konzept, Kapitel 4.1 */
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: Arial, sans-serif;
+    background: #dddddd;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    width: 700px;
+  }
+  .serp { width: 652px; background: #fff; border-radius: 12px; padding: 22px 26px; }
+  .suchfeld {
+    display: flex; align-items: center; gap: 10px;
+    border: 1px solid #dfe1e5; border-radius: 999px;
+    padding: 11px 18px; margin-bottom: 20px;
+    font-size: 15px; color: #202124;
+  }
+  .lupe { color: #9aa0a6; font-size: 15px; }
+  .gesponsert { font-size: 12px; font-weight: 700; color: #202124; margin-bottom: 8px; }
+  .anzeige-kopf { display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
+  .favicon {
+    width: 26px; height: 26px; border-radius: 999px; background: #111210;
+    color: #fff; font-weight: 900; font-size: 12px; font-family: "Inter", Arial, sans-serif;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .seite { font-size: 14px; color: #202124; }
+  .url { font-size: 12px; color: #4d5156; }
+  .titel { font-size: 20px; color: #1a0dab; margin: 4px 0 5px; line-height: 1.3; }
+  .beschreibung { font-size: 14px; color: #4d5156; line-height: 1.55; max-width: 600px; }
+  .erweiterung { display: flex; gap: 18px; margin-top: 10px; }
+  .erweiterung span { font-size: 14px; color: #1a0dab; }
+  .demo-fuss { font-size: 10.5px; color: #70757a; margin-top: 14px; }
+</style>
+</head>
+<body>
+
+  <!-- GKV-Kampagne -->
+  <div class="serp" id="rsa-gkv">
+    <div class="suchfeld"><span class="lupe">🔍</span> krankenkasse zu teuer</div>
+    <div class="gesponsert">Gesponsert</div>
+    <div class="anzeige-kopf">
+      <div class="favicon">g</div>
+      <div>
+        <div class="seite">Getsafe</div>
+        <div class="url">https://www.hellogetsafe.com › kassen-check</div>
+      </div>
+    </div>
+    <div class="titel">Krankenkasse zu teuer? – Bis zu 770 € pro Jahr sparen | Wechsel dauert 5 Minuten</div>
+    <div class="beschreibung">
+      Gleiche Grundleistungen, weniger Beitrag. Sparpotenzial in 10 Sekunden berechnen.
+      Sonderkündigungsrecht bei Erhöhung – die neue Kasse kündigt für dich. Komplett digital.
+    </div>
+    <div class="erweiterung">
+      <span>Spar-Rechner</span><span>So funktioniert der Wechsel</span><span>Häufige Fragen</span>
+    </div>
+    <p class="demo-fuss">Konzept-Mockup · Bewerbungsarbeit Norbert Sommer · keine Anzeige der Getsafe GmbH</p>
+  </div>
+
+  <!-- PKV-Kampagne (Eligibility-Filter vor dem teuren Klick) -->
+  <div class="serp" id="rsa-pkv">
+    <div class="suchfeld"><span class="lupe">🔍</span> gkv pkv wechseln</div>
+    <div class="gesponsert">Gesponsert</div>
+    <div class="anzeige-kopf">
+      <div class="favicon">g</div>
+      <div>
+        <div class="seite">Getsafe</div>
+        <div class="url">https://www.hellogetsafe.com › pkv-check</div>
+      </div>
+    </div>
+    <div class="titel">Über 77.400 € Jahresbrutto? – PKV-Option in 5 Fragen prüfen | Ehrlicher Fit-Check</div>
+    <div class="beschreibung">
+      Berechtigung, Familie, Langfristkosten – ehrlich geprüft, ohne Verkaufsdruck.
+      Kostenlose 15-min-Beratung, wenn es passt. Wir sagen auch, wann die GKV besser ist.
+    </div>
+    <div class="erweiterung">
+      <span>Fit-Check starten</span><span>Versicherungspflichtgrenze 2026</span><span>Beratung buchen</span>
+    </div>
+    <p class="demo-fuss">Konzept-Mockup · Bewerbungsarbeit Norbert Sommer · keine Anzeige der Getsafe GmbH</p>
+  </div>
+
+</body>
+</html>
