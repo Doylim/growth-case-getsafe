@@ -13,7 +13,9 @@ import Link from "next/link";
 const BBG_MONAT = 5812.5;
 const GUENSTIGSTE = 2.18;
 const TEUERSTE = 4.39;
-const DURCHSCHNITT = 2.9;
+// Realer, mitgliedergewichteter Durchschnitt 2026 (amtlicher Wert des
+// Schätzerkreises: 2,9 % – der tatsächliche Marktdurchschnitt liegt darüber)
+const DURCHSCHNITT = 3.13;
 
 const C = {
   ink: "#111210",
@@ -141,7 +143,8 @@ function Rechner() {
           className="rounded-xl px-3.5 py-2.5 text-sm"
           style={{ background: C.card }}
         >
-          Alles klar – wir rechnen mit dem Durchschnitt von <strong>2,9 %</strong>.
+          Alles klar – wir rechnen mit dem realen Durchschnitt von{" "}
+          <strong>3,13 %</strong>.
         </p>
       )}
       <button
@@ -328,12 +331,18 @@ export default function KassenCheck() {
         style={{ maxWidth: 1080 }}
       >
         <div className="flex items-center gap-8">
-          {/* Logo-Platzhalter */}
-          <div
-            className="rounded-lg px-3 py-1.5 text-xs font-bold tracking-wide"
-            style={{ border: `2px dashed ${C.line}`, color: C.inkSoft }}
-          >
-            GETSAFE&nbsp;LOGO
+          {/* Logo-Platzhalter als Wortmarke (Konzept-Demo, keine Original-Marke) */}
+          <div className="flex items-center gap-1.5 select-none" aria-label="Getsafe (Demo-Wortmarke)">
+            <span
+              className="text-xl font-black lowercase"
+              style={{ letterSpacing: "-0.04em" }}
+            >
+              getsafe
+            </span>
+            <span
+              className="rounded-full mt-2"
+              style={{ width: 8, height: 8, background: C.green }}
+            />
           </div>
           <div className="hidden md:flex items-center gap-6 text-sm font-medium">
             <span className="cursor-default">Versicherungen</span>
@@ -418,7 +427,7 @@ export default function KassenCheck() {
               {
                 chip: "gut zu wissen",
                 t: "2026 zahlen fast alle mehr",
-                d: "Der durchschnittliche Zusatzbeitrag: 2,9 %. Die Spanne zwischen den Kassen: 2,18 % bis 4,39 % – bei identischen Grundleistungen.",
+                d: "Amtlich festgelegt sind 2,9 % Zusatzbeitrag – real zahlen Mitglieder im Schnitt 3,13 %. Die Spanne: 2,18 % bis 4,39 %, bei identischen Grundleistungen.",
               },
               {
                 chip: "dein Recht",
@@ -506,12 +515,17 @@ export default function KassenCheck() {
             Sprich mit einem Experten, der deine Sprache spricht – nicht
             Versicherungskauderwelsch. Kostenlos und unverbindlich.
           </p>
-          <span
-            className="inline-block rounded-full px-8 py-4 font-bold text-white cursor-default"
+          <button
+            className="rounded-full px-8 py-4 font-bold text-white cursor-pointer transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_12px_32px_rgba(17,18,16,.25)]"
             style={{ background: C.ink }}
+            onClick={() =>
+              alert(
+                "Konzept-Demo: Ab hier übernimmt der bestehende Getsafe-Flow – Terminbuchung für die kostenlose 15-Minuten-Beratung."
+              )
+            }
           >
             kostenlose 15-min Beratung
-          </span>
+          </button>
         </div>
       </section>
 
@@ -527,8 +541,9 @@ export default function KassenCheck() {
             (Arbeitnehmeranteil), auf dein beitragspflichtiges Einkommen (max.{" "}
             {fmt(BBG_MONAT, 2)} € / Monat). „Bis zu 770 €" = Maximalfall: teuerste Kasse
             (4,39 %) zur günstigsten, Einkommen an der Beitragsbemessungsgrenze.
-            Durchschnittlicher Zusatzbeitrag laut BMG: 2,9 %. Datenstand Juli 2026.
-            Unverbindliche Modellrechnung.
+            Amtlicher durchschnittlicher Zusatzbeitrag (Schätzerkreis/BMG): 2,9 %;
+            realer, mitgliedergewichteter Durchschnitt: 3,13 %. Datenstand Juli
+            2026. Unverbindliche Modellrechnung.
           </p>
           <p className="mb-2">
             Diese Seite ist ein <strong>Kampagnen-Konzept</strong> und Teil einer

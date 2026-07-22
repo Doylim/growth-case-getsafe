@@ -14,6 +14,19 @@ export const metadata = {
     index: false,
     follow: false,
   },
+  openGraph: {
+    type: "website",
+    locale: "de_DE",
+    title: "Growth-Case Krankenversicherung",
+    description:
+      "Bewerbungsarbeit von Norbert Sommer: Growth-Funnel-Konzept mit zwei klickbaren Kampagnen-Demos.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Growth-Case Krankenversicherung",
+    description:
+      "Bewerbungsarbeit von Norbert Sommer: Growth-Funnel-Konzept mit zwei klickbaren Kampagnen-Demos.",
+  },
 };
 
 export default function RootLayout({ children }) {

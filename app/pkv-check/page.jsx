@@ -220,11 +220,18 @@ export default function PkvFitCheck() {
         style={{ maxWidth: 1080 }}
       >
         <div className="flex items-center gap-8">
-          <div
-            className="rounded-lg px-3 py-1.5 text-xs font-bold tracking-wide"
-            style={{ border: `2px dashed ${C.line}`, color: C.inkSoft }}
-          >
-            GETSAFE&nbsp;LOGO
+          {/* Logo-Platzhalter als Wortmarke (Konzept-Demo, keine Original-Marke) */}
+          <div className="flex items-center gap-1.5 select-none" aria-label="Getsafe (Demo-Wortmarke)">
+            <span
+              className="text-xl font-black lowercase"
+              style={{ letterSpacing: "-0.04em" }}
+            >
+              getsafe
+            </span>
+            <span
+              className="rounded-full mt-2"
+              style={{ width: 8, height: 8, background: C.green }}
+            />
           </div>
           <div className="hidden md:flex items-center gap-6 text-sm font-medium">
             <span className="cursor-default">Versicherungen</span>
