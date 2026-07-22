@@ -17,7 +17,7 @@ const VOICE_ID = process.env.ELEVENLABS_VOICE_ID || "EXAVITQu4vr4xnSDxMaL";
 
 // Zeilen + Startzeitpunkte (Sekunden) nach dem Videoskript
 const ZEILEN = [
-  { t: 0.3, text: "Diese Abbuchung ist bei dir zu hoch. Vermutlich." },
+  { t: 0.3, text: "Dieser Abzug auf deiner Gehaltsabrechnung ist zu hoch. Vermutlich." },
   { t: 3.4, text: "Gleiche Grundleistungen. Bis zu 770 Euro Unterschied pro Jahr." },
   { t: 8.6, text: "Zieh zwei Regler. Sieh, was du verschenkst." },
   { t: 15.4, text: "Wechsel in fünf Minuten. Die neue Kasse kündigt die alte." },
