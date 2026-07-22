@@ -207,7 +207,7 @@ export default function PkvFitCheck() {
       >
         <span
           className="inline-block rounded-full px-2 py-0.5 text-xs font-bold mr-2 align-middle"
-          style={{ background: C.green, color: "#fff" }}
+          style={{ background: C.greenDark, color: "#fff" }}
         >
           Neu
         </span>

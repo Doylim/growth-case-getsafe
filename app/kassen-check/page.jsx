@@ -192,61 +192,6 @@ function Rechner() {
             <p className="text-xs text-center mt-2" style={{ color: C.inkSoft }}>
               In wenigen Minuten abgeschlossen · ohne Papierkram
             </p>
-            {/* Entscheidungskarte: erscheint nur über der
-                Versicherungspflichtgrenze (77.400 € Jahresbrutto, 2026) */}
-            {brutto * 12 > 77400 && (
-              <div
-                className="mt-4 rounded-2xl overflow-hidden"
-                style={{ border: `1px solid ${C.line}` }}
-              >
-                <div
-                  className="px-4 py-3 text-sm font-bold text-white"
-                  style={{ background: C.ink }}
-                >
-                  Für dich gibt es einen zweiten Weg
-                </div>
-                <div className="p-4" style={{ background: C.card }}>
-                  <p className="text-xs leading-relaxed mb-3" style={{ color: C.inkSoft }}>
-                    Mit über 77.400 € Jahresbrutto (Versicherungspflichtgrenze 2026)
-                    steht dir auch die <strong style={{ color: C.ink }}>private
-                    Krankenversicherung</strong> offen.
-                  </p>
-                  <div className="grid grid-cols-2 gap-2.5 mb-3">
-                    <div
-                      className="rounded-xl px-3 py-2.5"
-                      style={{ background: C.paper, border: `1px solid ${C.line}` }}
-                    >
-                      <p className="text-[11px] font-bold uppercase mb-0.5" style={{ color: C.inkSoft, letterSpacing: "0.06em" }}>
-                        Weg 1 · GKV
-                      </p>
-                      <p className="text-sm font-bold">{fmt(calc.sparenJahr)} € / Jahr</p>
-                      <p className="text-[11px]" style={{ color: C.inkSoft }}>
-                        sparen durch Kassenwechsel
-                      </p>
-                    </div>
-                    <div
-                      className="rounded-xl px-3 py-2.5"
-                      style={{ background: C.paper, border: `1px solid ${C.line}` }}
-                    >
-                      <p className="text-[11px] font-bold uppercase mb-0.5" style={{ color: C.inkSoft, letterSpacing: "0.06em" }}>
-                        Weg 2 · PKV
-                      </p>
-                      <p className="text-sm font-bold">bis 613 € / Monat</p>
-                      <p className="text-[11px]" style={{ color: C.inkSoft }}>
-                        Arbeitgeberzuschuss zum Beitrag
-                      </p>
-                    </div>
-                  </div>
-                  <Link
-                    href="/pkv-check"
-                    className="block w-full rounded-full py-3 text-center text-sm font-bold text-white no-underline transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_12px_32px_rgba(18,183,106,.35)]"
-                    style={{ background: C.green }}
-                  >
-                    Ob die PKV zu dir passt: zum Fit-Check
-                  </Link>
-                </div>
-              </div>
-            )}
           </>
         ) : (
           <>
@@ -267,6 +212,66 @@ function Rechner() {
               sich deutlich.
             </p>
           </>
+        )}
+
+        {/* Entscheidungskarte: erscheint in beiden Zweigen, sobald das
+            Jahresbrutto über der Versicherungspflichtgrenze (77.400 €) liegt */}
+        {brutto * 12 > 77400 && (
+          <div
+            className="mt-4 rounded-2xl overflow-hidden"
+            style={{ border: `1px solid ${C.line}` }}
+          >
+            <div
+              className="px-4 py-3 text-sm font-bold text-white"
+              style={{ background: C.ink }}
+            >
+              Für dich gibt es einen zweiten Weg
+            </div>
+            <div className="p-4" style={{ background: C.card }}>
+              <p className="text-xs leading-relaxed mb-3" style={{ color: C.inkSoft }}>
+                Mit über 77.400 € Jahresbrutto (Versicherungspflichtgrenze 2026)
+                steht dir auch die <strong style={{ color: C.ink }}>private
+                Krankenversicherung</strong> offen.
+              </p>
+              <div className="grid grid-cols-2 gap-2.5 mb-3">
+                <div
+                  className="rounded-xl px-3 py-2.5"
+                  style={{ background: C.paper, border: `1px solid ${C.line}` }}
+                >
+                  <p className="text-[11px] font-bold uppercase mb-0.5" style={{ color: C.inkSoft, letterSpacing: "0.06em" }}>
+                    Weg 1 · GKV
+                  </p>
+                  <p className="text-sm font-bold">
+                    {lohnt ? `${fmt(calc.sparenJahr)} € / Jahr` : "ausgereizt"}
+                  </p>
+                  <p className="text-[11px]" style={{ color: C.inkSoft }}>
+                    {lohnt
+                      ? "sparen durch Kassenwechsel"
+                      : "du bist schon in der günstigsten Kasse"}
+                  </p>
+                </div>
+                <div
+                  className="rounded-xl px-3 py-2.5"
+                  style={{ background: C.paper, border: `1px solid ${C.line}` }}
+                >
+                  <p className="text-[11px] font-bold uppercase mb-0.5" style={{ color: C.inkSoft, letterSpacing: "0.06em" }}>
+                    Weg 2 · PKV
+                  </p>
+                  <p className="text-sm font-bold">bis 613 € / Monat</p>
+                  <p className="text-[11px]" style={{ color: C.inkSoft }}>
+                    Arbeitgeberzuschuss zum Beitrag
+                  </p>
+                </div>
+              </div>
+              <Link
+                href="/pkv-check"
+                className="block w-full rounded-full py-3 text-center text-sm font-bold text-white no-underline transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_12px_32px_rgba(11,122,75,.35)]"
+                style={{ background: C.greenDark }}
+              >
+                Ob die PKV zu dir passt: zum Fit-Check
+              </Link>
+            </div>
+          </div>
         )}
       </div>
     </div>
@@ -310,7 +315,7 @@ export default function KassenCheck() {
       >
         <span
           className="inline-block rounded-full px-2 py-0.5 text-xs font-bold mr-2 align-middle"
-          style={{ background: C.green, color: "#fff" }}
+          style={{ background: C.greenDark, color: "#fff" }}
         >
           Neu
         </span>

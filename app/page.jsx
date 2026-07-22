@@ -251,7 +251,7 @@ export default function Home() {
         <div className="mx-auto text-center" style={{ maxWidth: 560 }}>
           <div
             className="mx-auto mb-5 rounded-full flex items-center justify-center font-black text-2xl text-white"
-            style={{ width: 88, height: 88, background: C.green }}
+            style={{ width: 88, height: 88, background: C.greenDark }}
           >
             NS
           </div>
@@ -261,8 +261,8 @@ export default function Home() {
           </p>
           <a
             href={`mailto:${KONTAKT_EMAIL}?subject=Growth%20Creative%20%E2%80%93%20lass%20uns%20sprechen`}
-            className="inline-block rounded-full px-8 py-4 font-bold no-underline mb-8 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_12px_32px_rgba(18,183,106,.35)]"
-            style={{ background: C.green, color: "#fff" }}
+            className="inline-block rounded-full px-8 py-4 font-bold no-underline mb-8 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_12px_32px_rgba(11,122,75,.35)]"
+            style={{ background: C.greenDark, color: "#fff" }}
           >
             Lass uns sprechen
           </a>
