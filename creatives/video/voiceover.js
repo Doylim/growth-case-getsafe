@@ -6,9 +6,19 @@ const path = require("path");
 const fs = require("fs");
 const FF = require("ffmpeg-static");
 
-const KEY = process.env.ELEVENLABS_API_KEY;
+// Key aus Umgebung oder lokaler .env-Datei (nicht im Repo) laden
+let KEY = process.env.ELEVENLABS_API_KEY;
+const envDatei = path.join(__dirname, ".env");
+if (!KEY && fs.existsSync(envDatei)) {
+  const m = fs
+    .readFileSync(envDatei, "utf8")
+    .match(/ELEVENLABS_API_KEY\s*=\s*"?([^"\r\n]+)"?/);
+  if (m) KEY = m[1].trim();
+}
 if (!KEY) {
-  console.error("ELEVENLABS_API_KEY ist nicht gesetzt – Abbruch.");
+  console.error(
+    "ELEVENLABS_API_KEY fehlt – als Umgebungsvariable setzen oder in creatives/video/.env ablegen."
+  );
   process.exit(1);
 }
 
@@ -17,7 +27,7 @@ const VOICE_ID = process.env.ELEVENLABS_VOICE_ID || "EXAVITQu4vr4xnSDxMaL";
 
 // Zeilen + Startzeitpunkte (Sekunden) nach dem Videoskript
 const ZEILEN = [
-  { t: 0.3, text: "Dieser Abzug auf deiner Gehaltsabrechnung ist zu hoch. Vermutlich." },
+  { t: 0.3, text: "Dieser Abzug ist bei dir zu hoch. Vermutlich." },
   { t: 3.4, text: "Gleiche Grundleistungen. Bis zu 770 Euro Unterschied pro Jahr." },
   { t: 8.6, text: "Zieh zwei Regler. Sieh, was du verschenkst." },
   { t: 15.4, text: "Wechsel in fünf Minuten. Die neue Kasse kündigt die alte." },
