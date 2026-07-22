@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { track } from "../../lib/track";
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Kampagne 2 (Value-Play): PKV-Fit-Check – GKV→PKV-Wechsel in 5 Fragen.
@@ -170,15 +171,21 @@ export default function PkvFitCheck() {
     aktuelleIndex < 0 ? 1 : aktuelleIndex / sichtbareFragen.length;
 
   const antworte = (id, key) => {
+    if (Object.keys(antworten).length === 0) track("pc_start");
     const neu = { ...antworten, [id]: key };
     setAntworten(neu);
     const offen = FRAGEN.filter((f) => !f.nur || neu.status === f.nur).filter(
       (f) => !(f.id in neu)
     );
-    if (offen.length === 0) setErgebnis(auswerten(neu));
+    if (offen.length === 0) {
+      const resultat = auswerten(neu);
+      track("pc_complete", { ergebnis: resultat.typ });
+      setErgebnis(resultat);
+    }
   };
 
   const neustart = () => {
+    track("pc_restart");
     setAntworten({});
     setErgebnis(null);
   };
@@ -391,8 +398,10 @@ export default function PkvFitCheck() {
                 style={{ background: C.ink }}
                 onClick={() => {
                   if (E.cta.includes("Kassen-Check")) {
+                    track("pc_zum_kassencheck", { ergebnis: ergebnis.typ });
                     window.location.href = "/kassen-check";
                   } else {
+                    track("pc_cta_click", { ergebnis: ergebnis.typ });
                     alert(
                       "Konzept-Demo: Ab hier übernimmt der bestehende Getsafe-Flow – Beratungstermin, Vergleich über das Partnertableau, Antrag digital."
                     );

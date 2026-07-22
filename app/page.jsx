@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { track } from "../lib/track";
 
 // Case-Seite: Klammer der Bewerbungsarbeit. These → Demos → System → Roadmap →
 // Builder-Beweis → Making-of → Kontakt.
@@ -82,6 +83,7 @@ export default function Home() {
           <div className="grid sm:grid-cols-2 gap-4">
             <Link
               href="/kassen-check"
+              onClick={() => track("home_demo_click", { ziel: "kassen-check" })}
               className="block rounded-[24px] p-6 no-underline transition-all duration-200 hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(17,18,16,.10)]"
               style={{ background: C.card, border: `1px solid ${C.line}`, color: C.ink }}
             >
@@ -101,6 +103,7 @@ export default function Home() {
             </Link>
             <Link
               href="/pkv-check"
+              onClick={() => track("home_demo_click", { ziel: "pkv-check" })}
               className="block rounded-[24px] p-6 no-underline transition-all duration-200 hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(17,18,16,.10)]"
               style={{ background: C.card, border: `1px solid ${C.line}`, color: C.ink }}
             >

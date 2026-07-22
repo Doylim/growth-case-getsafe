@@ -1,7 +1,8 @@
 "use client";
 
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useRef } from "react";
 import Link from "next/link";
+import { track } from "../../lib/track";
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Kampagnen-Landingpage im Getsafe-Look (1:1 Design-Sprache der Live-Seite
@@ -41,6 +42,22 @@ function Rechner() {
   const [zusatz, setZusatz] = useState(DURCHSCHNITT);
   const [kennt, setKennt] = useState(true);
   const [now, setNow] = useState(null);
+
+  // Funnel-Events nur einmal pro Besuch melden
+  const startGemeldet = useRef(false);
+  const karteGemeldet = useRef(false);
+  const meldeStart = () => {
+    if (!startGemeldet.current) {
+      startGemeldet.current = true;
+      track("kc_rechner_start");
+    }
+  };
+  useEffect(() => {
+    if (brutto * 12 > 77400 && !karteGemeldet.current) {
+      karteGemeldet.current = true;
+      track("kc_pkv_card_view");
+    }
+  }, [brutto]);
 
   useEffect(() => {
     setNow(Date.now());
@@ -110,7 +127,10 @@ function Rechner() {
         max={8000}
         step={50}
         value={brutto}
-        onChange={(e) => setBrutto(Number(e.target.value))}
+        onChange={(e) => {
+          meldeStart();
+          setBrutto(Number(e.target.value));
+        }}
         style={{
           background: `linear-gradient(to right, ${C.ink} ${((brutto - 1000) / 7000) * 100}%, ${C.line} 0%)`,
         }}
@@ -132,7 +152,10 @@ function Rechner() {
             max={TEUERSTE}
             step={0.01}
             value={zusatz}
-            onChange={(e) => setZusatz(Number(e.target.value))}
+            onChange={(e) => {
+              meldeStart();
+              setZusatz(Number(e.target.value));
+            }}
             style={{
               background: `linear-gradient(to right, ${C.ink} ${((zusatz - GUENSTIGSTE) / (TEUERSTE - GUENSTIGSTE)) * 100}%, ${C.line} 0%)`,
             }}
@@ -188,11 +211,12 @@ function Rechner() {
             <button
               className="w-full rounded-full py-3.5 font-bold text-white cursor-pointer transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_12px_32px_rgba(17,18,16,.25)]"
               style={{ background: C.ink }}
-              onClick={() =>
+              onClick={() => {
+                track("kc_wechsel_click");
                 alert(
                   "Konzept-Demo: Ab hier übernimmt der bestehende App-Flow – Kasse wählen, Antrag digital, die neue Kasse kündigt die alte automatisch."
-                )
-              }
+                );
+              }}
             >
               Jetzt Kasse wechseln
             </button>
@@ -272,6 +296,7 @@ function Rechner() {
               </div>
               <Link
                 href="/pkv-check"
+                onClick={() => track("kc_pkv_card_click")}
                 className="block w-full rounded-full py-3 text-center text-sm font-bold text-white no-underline transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_12px_32px_rgba(11,122,75,.35)]"
                 style={{ background: C.greenDark }}
               >
@@ -523,11 +548,12 @@ export default function KassenCheck() {
           <button
             className="rounded-full px-8 py-4 font-bold text-white cursor-pointer transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_12px_32px_rgba(17,18,16,.25)]"
             style={{ background: C.ink }}
-            onClick={() =>
+            onClick={() => {
+              track("kc_beratung_click");
               alert(
                 "Konzept-Demo: Ab hier übernimmt der bestehende Getsafe-Flow – Terminbuchung für die kostenlose 15-Minuten-Beratung."
-              )
-            }
+              );
+            }}
           >
             kostenlose 15-min Beratung
           </button>
