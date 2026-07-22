@@ -30,7 +30,7 @@ const VOICE_ID = process.env.ELEVENLABS_VOICE_ID || "onwK4e9ZLuTAKqWW03F9";
 const ZEILEN = [
   { t: 0.25, text: "Hier verlierst du jeden Monat Geld." },
   { t: 3.1, text: "Bis zu 770 Euro im Jahr – zurück in deine Tasche." },
-  { t: 7.4, text: "Zwei Regler. Zehn Sekunden. Deine Ersparnis." },
+  { t: 7.8, text: "Zwei Regler. Zehn Sekunden. Deine Ersparnis." },
   { t: 12.9, text: "Wechseln? Fünf Minuten. Den Rest übernimmt die neue Kasse." },
   { t: 17.5, text: "Kassen-Check. Hol dir dein Geld zurück." },
 ];
@@ -39,8 +39,9 @@ const DIR = path.join(__dirname, "voiceover");
 fs.mkdirSync(DIR, { recursive: true });
 
 (async () => {
-  // 1. Zeilen als MP3 erzeugen
-  for (let i = 0; i < ZEILEN.length; i++) {
+  // 1. Zeilen als MP3 erzeugen (`node voiceover.js mix` = nur neu mischen)
+  const nurMischen = process.argv[2] === "mix";
+  for (let i = 0; !nurMischen && i < ZEILEN.length; i++) {
     const res = await fetch(
       `https://api.elevenlabs.io/v1/text-to-speech/${VOICE_ID}?output_format=mp3_44100_128`,
       {
