@@ -2,10 +2,18 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import {
+  Check,
+  Zap,
+  Megaphone,
+  BarChart3,
+  CalendarRange,
+  ArrowLeftRight,
+} from "lucide-react";
 import { track } from "../lib/track";
 
-// Case-Seite: Klammer der Bewerbungsarbeit. These → Demos → System → Roadmap →
-// Builder-Beweis → Making-of → Kontakt.
+// Case-Seite (visuelle Fassung): Klammer der Bewerbungsarbeit.
+// Bulletpoints statt Absätze, Zahlen-Kacheln, Icons – Inhalte unverändert.
 
 const C = {
   ink: "#111210",
@@ -32,6 +40,46 @@ function Chip({ children }) {
   );
 }
 
+// Bullet mit grünem Haken – Standardbaustein der visuellen Fassung
+function Punkt({ children, hell }) {
+  return (
+    <li className="flex items-start gap-2.5 text-sm leading-relaxed">
+      <Check
+        size={16}
+        strokeWidth={3}
+        className="mt-0.5 shrink-0"
+        style={{ color: C.green }}
+        aria-hidden="true"
+      />
+      <span style={{ color: hell ? "#C9CCC9" : C.inkSoft }}>{children}</span>
+    </li>
+  );
+}
+
+// Zahlen-Kachel: große Zahl als Blickfang, kleines Label
+function Kachel({ wert, label, dunkel }) {
+  return (
+    <div
+      className="rounded-2xl px-4 py-4 text-center"
+      style={
+        dunkel
+          ? { background: "rgba(255,255,255,.06)", border: "1px solid rgba(255,255,255,.12)" }
+          : { background: C.paper, border: `1px solid ${C.line}` }
+      }
+    >
+      <p
+        className="font-black text-2xl mb-0.5"
+        style={{ color: dunkel ? "#7CE0B3" : C.greenDark, letterSpacing: "-0.02em" }}
+      >
+        {wert}
+      </p>
+      <p className="text-xs font-semibold" style={{ color: dunkel ? "#8A8F8A" : C.inkSoft }}>
+        {label}
+      </p>
+    </div>
+  );
+}
+
 export default function Home() {
   return (
     <div
@@ -43,7 +91,7 @@ export default function Home() {
       }}
     >
       {/* ── HERO ── */}
-      <header className="px-5 pt-14 pb-14 sm:pt-20 sm:pb-20" style={{ background: C.ink }}>
+      <header className="px-5 pt-14 pb-14 sm:pt-20 sm:pb-16" style={{ background: C.ink }}>
         <div className="mx-auto" style={{ maxWidth: 780 }}>
           <p
             className="text-xs font-semibold uppercase mb-5"
@@ -52,26 +100,38 @@ export default function Home() {
             Bewerbungsarbeit · (Senior) Growth Creative (AI-native) · Getsafe
           </p>
           <h1
-            className="font-black leading-[1.1] text-white mb-6 text-balance"
+            className="font-black leading-[1.1] text-white mb-5 text-balance"
             style={{ fontSize: "clamp(1.9rem, 5vw, 3rem)", letterSpacing: "-0.03em" }}
           >
             Ich habe kein Anschreiben geschrieben.
             <br />
             Ich habe euren Health-Funnel gebaut.
           </h1>
-          <p className="text-base leading-relaxed mb-4" style={{ color: "#C9CCC9" }}>
+          <p className="text-base leading-relaxed mb-5" style={{ color: "#C9CCC9" }}>
             <strong style={{ color: "#fff" }}>Die These:</strong> Krankenversicherung
-            als zweistufiger Growth-Funnel. Der{" "}
-            <strong style={{ color: "#fff" }}>Kassen-Check</strong> gewinnt günstig
-            Reichweite, der <strong style={{ color: "#fff" }}>PKV-Fit-Check</strong>{" "}
-            qualifiziert wertvolle Leads für eure Beratung – aktiviert in
-            Trigger-Momenten: Beitragserhöhung, Gehaltssprung, Jobwechsel. Gemessen
-            bis zur aktivierten Police, nicht bis zum Klick.
+            als zweistufiger Growth-Funnel – gemessen bis zur aktivierten Police,
+            nicht bis zum Klick.
           </p>
-          <p className="text-sm" style={{ color: "#8A8F8A" }}>
-            Beide Strecken sind unten live und klickbar. Gebaut an Abenden einer Woche,
-            Gesamtkosten unter 20 €, AI als Betriebssystem.
-          </p>
+          <ul className="space-y-2 mb-8">
+            <Punkt hell>
+              <strong style={{ color: "#fff" }}>Kassen-Check</strong> gewinnt günstig
+              Reichweite und Kund:innen
+            </Punkt>
+            <Punkt hell>
+              <strong style={{ color: "#fff" }}>PKV-Fit-Check</strong> qualifiziert
+              wertvolle Leads für eure Beratung
+            </Punkt>
+            <Punkt hell>
+              Aktiviert in <strong style={{ color: "#fff" }}>Trigger-Momenten</strong>:
+              Beitragserhöhung, Gehaltssprung, Jobwechsel
+            </Punkt>
+          </ul>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+            <Kachel dunkel wert="2" label="Demos live & klickbar" />
+            <Kachel dunkel wert="< 20 €" label="Gesamtkosten" />
+            <Kachel dunkel wert="1 Woche" label="Abende, neben dem Job" />
+            <Kachel dunkel wert="0" label="Seiten Anschreiben" />
+          </div>
         </div>
       </header>
 
@@ -89,12 +149,12 @@ export default function Home() {
               style={{ background: C.card, border: `1px solid ${C.line}`, color: C.ink }}
             >
               <Chip>Volumen-Play</Chip>
-              <p className="font-bold text-lg mt-3 mb-1">Kassen-Check (GKV)</p>
-              <p className="text-sm leading-relaxed mb-4" style={{ color: C.inkSoft }}>
-                Sparpotenzial in 10 Sekunden, Live-Zähler „bereits verschenkt“,
-                Übergabe in den Wechsel-Flow – der „Spare 1.440 €“-Moment vor der
-                Registrierung.
-              </p>
+              <p className="font-bold text-lg mt-3 mb-2.5">Kassen-Check (GKV)</p>
+              <ul className="space-y-1.5 mb-4">
+                <Punkt>Sparpotenzial in 10 Sekunden</Punkt>
+                <Punkt>Live-Zähler „bereits verschenkt“</Punkt>
+                <Punkt>Übergabe direkt in den Wechsel-Flow</Punkt>
+              </ul>
               <span
                 className="inline-block rounded-full px-5 py-2.5 text-sm font-bold text-white"
                 style={{ background: C.ink }}
@@ -109,12 +169,12 @@ export default function Home() {
               style={{ background: C.card, border: `1px solid ${C.line}`, color: C.ink }}
             >
               <Chip>Wert-Play</Chip>
-              <p className="font-bold text-lg mt-3 mb-1">PKV-Fit-Check</p>
-              <p className="text-sm leading-relaxed mb-4" style={{ color: C.inkSoft }}>
-                5 Fragen, ehrliche Fit-Logik mit Eligibility-Gate (77.400 €), sechs
-                Ergebnispfade – filtert 20–40-€-Klicks, bevor eure Beratung Zeit
-                investiert.
-              </p>
+              <p className="font-bold text-lg mt-3 mb-2.5">PKV-Fit-Check</p>
+              <ul className="space-y-1.5 mb-4">
+                <Punkt>5 Fragen, sechs ehrliche Ergebnispfade</Punkt>
+                <Punkt>Eligibility-Gate bei 77.400&thinsp;€</Punkt>
+                <Punkt>Filtert 20–40-€-Klicks vor der Beratung</Punkt>
+              </ul>
               <span
                 className="inline-block rounded-full px-5 py-2.5 text-sm font-bold text-white"
                 style={{ background: C.ink }}
@@ -123,10 +183,29 @@ export default function Home() {
               </span>
             </Link>
           </div>
-          <p className="text-sm mt-4 leading-relaxed" style={{ color: C.inkSoft }}>
-            Verzahnt: Gutverdiener sehen im Kassen-Check die PKV-Option, wer nicht
-            in die PKV passt, landet im Kassen-Check – kein Lead geht verloren.
-          </p>
+
+          {/* Verzahnungs-Diagramm statt Absatz */}
+          <div
+            className="mt-4 rounded-2xl px-5 py-4 flex flex-col sm:flex-row items-center justify-center gap-3 text-sm font-bold"
+            style={{ background: C.card, border: `1px solid ${C.line}` }}
+          >
+            <span className="rounded-full px-4 py-2 text-white" style={{ background: C.ink }}>
+              Kassen-Check
+            </span>
+            <span className="flex items-center gap-2" style={{ color: C.greenDark }}>
+              <ArrowLeftRight size={18} strokeWidth={2.5} aria-hidden="true" />
+              <span className="text-xs font-bold uppercase" style={{ letterSpacing: "0.08em" }}>
+                verzahnt
+              </span>
+              <ArrowLeftRight size={18} strokeWidth={2.5} className="sm:hidden" aria-hidden="true" />
+            </span>
+            <span className="rounded-full px-4 py-2 text-white" style={{ background: C.ink }}>
+              PKV-Fit-Check
+            </span>
+            <span className="sm:ml-2" style={{ color: C.inkSoft, fontWeight: 600 }}>
+              Kein Lead geht verloren.
+            </span>
+          </div>
         </div>
       </section>
 
@@ -142,11 +221,26 @@ export default function Home() {
           <h2 className="font-black text-2xl mb-3 text-white text-balance" style={{ letterSpacing: "-0.02em" }}>
             Die Creatives zur Kampagne
           </h2>
-          <p className="text-sm leading-relaxed mb-8" style={{ color: "#C9CCC9" }}>
-            Alles im AI-Stack produziert: Szenen als Code, Playwright als Kamera,
-            ffmpeg als Schnitt, ElevenLabs als Stimme. Jedes Asset in Minuten neu
-            renderbar – Copy ändern, rendern, testen.
-          </p>
+          <div className="flex flex-wrap items-center gap-2 mb-8">
+            {["Szenen als Code", "Playwright als Kamera", "ffmpeg als Schnitt", "ElevenLabs als Stimme"].map(
+              (t) => (
+                <span
+                  key={t}
+                  className="rounded-full px-3 py-1 text-xs font-bold"
+                  style={{
+                    background: "rgba(255,255,255,.06)",
+                    border: "1px solid rgba(255,255,255,.12)",
+                    color: "#C9CCC9",
+                  }}
+                >
+                  {t}
+                </span>
+              )
+            )}
+            <span className="text-xs font-semibold" style={{ color: "#7CE0B3" }}>
+              → jedes Asset in Minuten neu renderbar
+            </span>
+          </div>
 
           {/* Videos */}
           <div className="grid sm:grid-cols-2 gap-4 mb-3">
@@ -159,7 +253,7 @@ export default function Home() {
                 style={{ aspectRatio: "9/16", background: "#000" }}
                 src="/creatives/kassen-check-spot-vo.mp4"
               />
-              <p className="text-xs mt-2 font-semibold text-white">Der Spot · 21 s</p>
+              <p className="text-xs mt-2 font-semibold text-white">Der Spot · 21&thinsp;s</p>
               <p className="text-xs" style={{ color: "#8A8F8A" }}>
                 5 Szenen nach Skript, Voiceover, Untertitel – Ton an!
               </p>
@@ -173,7 +267,7 @@ export default function Home() {
                 style={{ aspectRatio: "9/16", background: "#000" }}
                 src="/creatives/hook1-zaehler.mp4"
               />
-              <p className="text-xs mt-2 font-semibold text-white">Hook „Der Zähler“ · 11 s</p>
+              <p className="text-xs mt-2 font-semibold text-white">Hook „Der Zähler“ · 11&thinsp;s</p>
               <p className="text-xs" style={{ color: "#8A8F8A" }}>
                 Paid-Social-Hook: Count-up auf den echten Seit-Januar-Wert
               </p>
@@ -209,11 +303,12 @@ export default function Home() {
             <Image src="/creatives/crm-email.png" alt="E-Mail an das PKV-Segment: Eine Option, die die meisten nie prüfen" width={1184} height={1408} className="rounded-xl w-full h-auto" />
           </div>
 
-          <p className="text-xs mt-8 leading-relaxed" style={{ color: "#8A8F8A" }}>
-            Und alles ist verkabelt: cookieloses Event-Tracking entlang der
-            KPI-Kette, vom Rechner-Start bis zum Beratungs-Klick. Keine
-            personenbezogenen Daten – aber jede Conversion-Frage beantwortbar.
-          </p>
+          {/* Tracking als Kachel-Zeile */}
+          <div className="grid grid-cols-3 gap-3 mt-8">
+            <Kachel dunkel wert="11" label="Funnel-Events verkabelt" />
+            <Kachel dunkel wert="0" label="Cookies & PII" />
+            <Kachel dunkel wert="100 %" label="KPI-Kette bis zur Beratung" />
+          </div>
         </div>
       </section>
 
@@ -226,38 +321,68 @@ export default function Home() {
           <div className="grid sm:grid-cols-2 gap-4">
             {[
               {
+                icon: Zap,
                 t: "Trigger statt Dauerfeuer",
-                d: "Januar-Erhöhungswelle (Sonderkündigungsrecht), Gehaltsrunden, Jobwechsel, 2027-Grenzwert-Reform als News-Aufhänger.",
+                punkte: [
+                  "Januar-Erhöhungswelle (Sonderkündigungsrecht)",
+                  "Gehaltsrunden und Jobwechsel",
+                  "2027-Grenzwert-Reform als News-Aufhänger",
+                ],
               },
               {
+                icon: Megaphone,
                 t: "Vier Kanäle, klare Rollen",
-                d: "Paid Search mit Eligibility-Filter, Paid Social mit dem Zähler als Hook, SEO-Cluster mit Freshness-Updates. Schnellster ROI: 500.000+ Bestandskund:innen per In-App-Karte – Media-Kosten null.",
+                punkte: [
+                  "Paid Search mit Eligibility-Filter",
+                  "Paid Social mit dem Zähler als Hook",
+                  "SEO-Cluster mit Freshness-Updates",
+                  "Bestand: 500.000+ per In-App-Karte, 0 € Media",
+                ],
               },
               {
+                icon: BarChart3,
                 t: "Messung bis zur Police",
-                d: "GKV: CTR → Rechner → Antrag → aktivierte Police → CAC/Deckungsbeitrag. PKV: plus Show-up-Rate und Annahmequote. Wer nur bis zum Lead misst, optimiert die falsche Stelle.",
+                punkte: [
+                  "GKV: CTR → Rechner → Antrag → Police → CAC",
+                  "PKV: plus Show-up-Rate und Annahmequote",
+                  "Nur bis zum Lead messen = falsche Stelle optimieren",
+                ],
               },
               {
+                icon: CalendarRange,
                 t: "90-Tage-Plan",
-                d: "0–30: Tracking, CRM-Test, Kassen-Check-MVP. 31–60: Paid-Tests, PKV-Strecke, Framing-Experiment. 61–90: Gewinner skalieren, SEO live, Wirtschaftlichkeit je Kanal.",
+                punkte: [
+                  "0–30: Tracking, CRM-Test, Kassen-Check-MVP",
+                  "31–60: Paid-Tests, PKV-Strecke, Framing-Test",
+                  "61–90: Skalieren, SEO live, Kanal-Ökonomie",
+                ],
               },
-            ].map((s, i) => (
+            ].map((s) => (
               <div
-                key={i}
+                key={s.t}
                 className="rounded-[24px] p-6"
                 style={{ background: C.paper, border: `1px solid ${C.line}` }}
               >
-                <p className="font-bold mb-1.5">{s.t}</p>
-                <p className="text-sm leading-relaxed" style={{ color: C.inkSoft }}>
-                  {s.d}
-                </p>
+                <div className="flex items-center gap-2.5 mb-3">
+                  <span
+                    className="rounded-xl flex items-center justify-center"
+                    style={{ width: 34, height: 34, background: C.greenSoft }}
+                  >
+                    <s.icon size={18} strokeWidth={2.5} style={{ color: C.greenDark }} aria-hidden="true" />
+                  </span>
+                  <p className="font-bold">{s.t}</p>
+                </div>
+                <ul className="space-y-1.5">
+                  {s.punkte.map((p) => (
+                    <Punkt key={p}>{p}</Punkt>
+                  ))}
+                </ul>
               </div>
             ))}
           </div>
           <p className="text-xs mt-4 leading-relaxed" style={{ color: C.inkSoft }}>
             Das vollständige Konzept – Anzeigentexte, Creative-Hooks, Videoskript,
-            KPI-Ketten, Compliance-Checkliste – liegt als Dokument bei und ist Teil
-            dieser Bewerbung.
+            KPI-Ketten, Compliance-Checkliste – liegt als Dokument bei.
           </p>
         </div>
       </section>
@@ -283,21 +408,25 @@ export default function Home() {
                   fight-evolution.de
                 </a>
               </p>
-              <p className="text-sm leading-relaxed" style={{ color: C.inkSoft }}>
-                Kampfsportverein mit 15+ Jahren Geschichte, 2024 neu aufgestellt –
-                ich ehrenamtlich als Vorstand und Trainer. Marke, Logo, Website von
-                null: Next.js auf Vercel, Botschutz vorm Formular, KI beantwortet
-                jede Anfrage persönlich. AI in Produktion – mit Kostenbewusstsein,
-                denn jede automatisierte Mail kostet Geld.
+              <p className="text-xs mb-3" style={{ color: C.inkSoft }}>
+                Kampfsportverein, 15+ Jahre · ich ehrenamtlich als Vorstand &amp; Trainer
               </p>
+              <ul className="space-y-1.5">
+                <Punkt>Marke, Logo, Website von null – Next.js auf Vercel</Punkt>
+                <Punkt>KI beantwortet jede Anfrage mit persönlicher Mail</Punkt>
+                <Punkt>Botschutz davor – denn jede Mail kostet Geld</Punkt>
+              </ul>
             </div>
             <div className="rounded-[24px] p-6" style={{ background: C.card, border: `1px solid ${C.line}` }}>
               <p className="font-bold mb-1">Hauptberuf: Operations &amp; Lean Management</p>
-              <p className="text-sm leading-relaxed" style={{ color: C.inkSoft }}>
-                Ich verschlanke Prozesse in der Industrie – dieselbe Disziplin wie
-                Growth, nur mit anderen Werkzeugen: testen, messen, Verschwendung
-                eliminieren, iterieren.
+              <p className="text-xs mb-3" style={{ color: C.inkSoft }}>
+                Prozesse verschlanken in der Industrie
               </p>
+              <ul className="space-y-1.5">
+                <Punkt>Testen, messen, Verschwendung eliminieren</Punkt>
+                <Punkt>Iterieren statt perfektionieren</Punkt>
+                <Punkt>Dieselbe Disziplin wie Growth – andere Werkzeuge</Punkt>
+              </ul>
             </div>
           </div>
         </div>
@@ -306,18 +435,18 @@ export default function Home() {
       {/* ── MAKING-OF ── */}
       <section className="px-5 py-14 sm:py-16" style={{ background: C.card }}>
         <div className="mx-auto" style={{ maxWidth: 780 }}>
-          <h2 className="font-black text-2xl mb-4 text-balance" style={{ letterSpacing: "-0.02em" }}>
+          <h2 className="font-black text-2xl mb-5 text-balance" style={{ letterSpacing: "-0.02em" }}>
             Making-of
           </h2>
-          <p className="text-sm leading-relaxed mb-3" style={{ color: C.inkSoft }}>
-            Recherche, Wettbewerbsanalyse, Funnel-Konzept: im Sparring mit Claude –
-            entschieden und verantwortet von mir. App-Analyse: selbst durchgespielt.
-            Code, Copy und Design: AI-gestützt gebaut, von Hand nachgeschärft.
-            Hosting: Vercel.
-          </p>
+          <div className="grid grid-cols-3 gap-3 mb-5">
+            <Kachel wert="< 20 €" label="Gesamtkosten" />
+            <Kachel wert="1 Woche" label="Abende – neben Job, Verein, Familie" />
+            <Kachel wert="100 %" label="selbst entschieden & verantwortet" />
+          </div>
           <p className="text-sm leading-relaxed" style={{ color: C.ink }}>
-            Unter 20 € Gesamtkosten, Abende einer Woche – neben Vollzeitjob,
-            Vereinsvorstand und Familie.{" "}
+            Recherche und Konzept im Sparring mit Claude, App-Analyse selbst
+            durchgespielt, Code und Design AI-gestützt gebaut und von Hand
+            nachgeschärft.{" "}
             <strong>
               AI ist kein Trend in meinem Werkzeugkasten. Es ist der Werkzeugkasten.
             </strong>
@@ -336,7 +465,7 @@ export default function Home() {
           </div>
           <p className="font-bold text-xl text-white mb-1">Norbert Sommer</p>
           <p className="text-sm mb-7" style={{ color: "#C9CCC9" }}>
-            Heidelberg · Builder · AI-native · Deutsch & Englisch
+            Heidelberg · Builder · AI-native · Deutsch &amp; Englisch
           </p>
           <a
             href={`mailto:${KONTAKT_EMAIL}?subject=Growth%20Creative%20%E2%80%93%20lass%20uns%20sprechen`}
