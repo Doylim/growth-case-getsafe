@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useMemo, useRef } from "react";
 import Link from "next/link";
+import { Check } from "lucide-react";
 import { track } from "../../lib/track";
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -31,6 +32,22 @@ const C = {
 
 const fmt = (n, d = 0) =>
   n.toLocaleString("de-DE", { minimumFractionDigits: d, maximumFractionDigits: d });
+
+// Bullet mit grünem Haken (gleicher Baustein wie auf der Case-Seite)
+function Haken({ children }) {
+  return (
+    <li className="flex items-start gap-2 text-sm leading-relaxed">
+      <Check
+        size={15}
+        strokeWidth={3}
+        className="mt-1 shrink-0"
+        style={{ color: C.green }}
+        aria-hidden="true"
+      />
+      <span style={{ color: C.inkSoft }}>{children}</span>
+    </li>
+  );
+}
 
 const yearStart = new Date(2026, 0, 1).getTime();
 const yearEnd = new Date(2027, 0, 1).getTime();
@@ -458,17 +475,29 @@ export default function KassenCheck() {
               {
                 chip: "gut zu wissen",
                 t: "2026 zahlen fast alle mehr",
-                d: "Amtlich festgelegt sind 2,9 % Zusatzbeitrag – real zahlen Mitglieder im Schnitt 3,13 %. Die Spanne: 2,18 % bis 4,39 %, bei identischen Grundleistungen.",
+                punkte: [
+                  <>Amtlich: 2,9 % – real im Schnitt <strong style={{ color: C.ink }}>3,13 %</strong></>,
+                  <>Spanne: <strong style={{ color: C.ink }}>2,18 % bis 4,39 %</strong></>,
+                  <>Grundleistungen: identisch</>,
+                ],
               },
               {
                 chip: "dein Recht",
                 t: "Erhöhung? Sofort raus.",
-                d: "Bei einer Beitragserhöhung gilt das Sonderkündigungsrecht – die 12-Monats-Bindung fällt weg. Der beste Moment zum Wechseln.",
+                punkte: [
+                  <>Beitragserhöhung = <strong style={{ color: C.ink }}>Sonderkündigungsrecht</strong></>,
+                  <>12-Monats-Bindung fällt weg</>,
+                  <>Der beste Moment zum Wechseln</>,
+                ],
               },
               {
                 chip: "ohne Papierkram",
                 t: "5 Minuten, fertig",
-                d: "Du beantragst nur die neue Mitgliedschaft. Die neue Kasse kündigt die alte, dein Arbeitgeber bekommt alles elektronisch. Lückenlos versichert.",
+                punkte: [
+                  <>Nur die neue Mitgliedschaft beantragen</>,
+                  <>Die neue Kasse kündigt die alte</>,
+                  <>Arbeitgeber elektronisch informiert – <strong style={{ color: C.ink }}>lückenlos versichert</strong></>,
+                ],
               },
             ].map((s, i) => (
               <div
@@ -482,10 +511,12 @@ export default function KassenCheck() {
                 >
                   {s.chip}
                 </span>
-                <p className="font-bold text-lg mb-1.5">{s.t}</p>
-                <p className="text-sm leading-relaxed" style={{ color: C.inkSoft }}>
-                  {s.d}
-                </p>
+                <p className="font-bold text-lg mb-2">{s.t}</p>
+                <ul className="space-y-1.5">
+                  {s.punkte.map((p, j) => (
+                    <Haken key={j}>{p}</Haken>
+                  ))}
+                </ul>
               </div>
             ))}
           </div>

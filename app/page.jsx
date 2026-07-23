@@ -9,6 +9,7 @@ import {
   BarChart3,
   CalendarRange,
   ArrowLeftRight,
+  ArrowUpRight,
 } from "lucide-react";
 import { track } from "../lib/track";
 
@@ -56,11 +57,12 @@ function Punkt({ children, hell }) {
   );
 }
 
-// Zahlen-Kachel: große Zahl als Blickfang, kleines Label
+// Zahlen-Kachel: große Zahl als Blickfang, kleines Label.
+// Wert bricht nie um (nowrap), Label eng gesetzt – bleibt in schmalen Kacheln sauber.
 function Kachel({ wert, label, dunkel }) {
   return (
     <div
-      className="rounded-2xl px-4 py-4 text-center"
+      className="rounded-2xl px-3 py-4 text-center"
       style={
         dunkel
           ? { background: "rgba(255,255,255,.06)", border: "1px solid rgba(255,255,255,.12)" }
@@ -68,12 +70,15 @@ function Kachel({ wert, label, dunkel }) {
       }
     >
       <p
-        className="font-black text-2xl mb-0.5"
+        className="font-black text-xl sm:text-2xl mb-1 whitespace-nowrap"
         style={{ color: dunkel ? "#7CE0B3" : C.greenDark, letterSpacing: "-0.02em" }}
       >
         {wert}
       </p>
-      <p className="text-xs font-semibold" style={{ color: dunkel ? "#8A8F8A" : C.inkSoft }}>
+      <p
+        className="text-[11px] sm:text-xs font-semibold leading-snug text-balance"
+        style={{ color: dunkel ? "#8A8F8A" : C.inkSoft }}
+      >
         {label}
       </p>
     </div>
@@ -184,25 +189,30 @@ export default function Home() {
             </Link>
           </div>
 
-          {/* Verzahnungs-Diagramm statt Absatz */}
+          {/* Verzahnungs-Zeile: linksbündig im Duktus der Seite, bricht sauber um */}
           <div
-            className="mt-4 rounded-2xl px-5 py-4 flex flex-col sm:flex-row items-center justify-center gap-3 text-sm font-bold"
+            className="mt-4 rounded-2xl px-5 py-4 flex flex-wrap items-center gap-x-3 gap-y-2.5 text-sm font-bold"
             style={{ background: C.card, border: `1px solid ${C.line}` }}
           >
-            <span className="rounded-full px-4 py-2 text-white" style={{ background: C.ink }}>
+            <span
+              className="rounded-full px-4 py-2 text-white whitespace-nowrap"
+              style={{ background: C.ink }}
+            >
               Kassen-Check
             </span>
-            <span className="flex items-center gap-2" style={{ color: C.greenDark }}>
-              <ArrowLeftRight size={18} strokeWidth={2.5} aria-hidden="true" />
-              <span className="text-xs font-bold uppercase" style={{ letterSpacing: "0.08em" }}>
-                verzahnt
-              </span>
-              <ArrowLeftRight size={18} strokeWidth={2.5} className="sm:hidden" aria-hidden="true" />
-            </span>
-            <span className="rounded-full px-4 py-2 text-white" style={{ background: C.ink }}>
+            <ArrowLeftRight
+              size={18}
+              strokeWidth={2.5}
+              style={{ color: C.greenDark }}
+              aria-hidden="true"
+            />
+            <span
+              className="rounded-full px-4 py-2 text-white whitespace-nowrap"
+              style={{ background: C.ink }}
+            >
               PKV-Fit-Check
             </span>
-            <span className="sm:ml-2" style={{ color: C.inkSoft, fontWeight: 600 }}>
+            <span style={{ color: C.inkSoft, fontWeight: 600 }}>
               Kein Lead geht verloren.
             </span>
           </div>
@@ -467,13 +477,25 @@ export default function Home() {
           <p className="text-sm mb-7" style={{ color: "#C9CCC9" }}>
             Heidelberg · Builder · AI-native · Deutsch &amp; Englisch
           </p>
-          <a
-            href={`mailto:${KONTAKT_EMAIL}?subject=Growth%20Creative%20%E2%80%93%20lass%20uns%20sprechen`}
-            className="inline-block rounded-full px-8 py-4 font-bold no-underline mb-8 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_12px_32px_rgba(11,122,75,.35)]"
-            style={{ background: C.greenDark, color: "#fff" }}
-          >
-            Lass uns sprechen
-          </a>
+          <div className="flex flex-wrap items-center justify-center gap-3 mb-8">
+            <a
+              href={`mailto:${KONTAKT_EMAIL}?subject=Growth%20Creative%20%E2%80%93%20lass%20uns%20sprechen`}
+              className="inline-block rounded-full px-8 py-4 font-bold no-underline transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_12px_32px_rgba(11,122,75,.35)]"
+              style={{ background: C.greenDark, color: "#fff" }}
+            >
+              Lass uns sprechen
+            </a>
+            <a
+              href="https://www.linkedin.com/in/norbert-sommer-8ba213196"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-full px-6 py-4 font-bold no-underline text-white transition-all duration-200 hover:-translate-y-0.5"
+              style={{ border: "1px solid rgba(255,255,255,.3)" }}
+            >
+              LinkedIn-Profil
+              <ArrowUpRight size={16} aria-hidden="true" />
+            </a>
+          </div>
           <p className="text-xs leading-relaxed" style={{ color: "#8A8F8A" }}>
             Private Bewerbungsarbeit von Norbert Sommer, keine Verbindung zur
             Getsafe GmbH. Die Demos sind Konzept-Prototypen ohne Vermittlungs- oder

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { Check } from "lucide-react";
 import { track } from "../../lib/track";
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -277,10 +278,24 @@ export default function PkvFitCheck() {
                 <span className="font-medium block">Wechsel von GKV in PKV?</span>
                 <span className="font-black block">Finde in 5 Fragen heraus, ob es passt.</span>
               </h1>
-              <p className="text-base mb-8" style={{ color: C.inkSoft }}>
-                Ob du wechseln darfst, ob es sich lohnt – und worauf du achten
-                musst. Ehrlich gerechnet, ohne Verkaufsdruck.
-              </p>
+              <ul className="space-y-1.5 mb-8">
+                {[
+                  "Ob du wechseln darfst",
+                  "Ob es sich für dich lohnen kann",
+                  "Worauf du achten musst – ehrlich, ohne Verkaufsdruck",
+                ].map((p) => (
+                  <li key={p} className="flex items-start gap-2 text-base leading-relaxed">
+                    <Check
+                      size={17}
+                      strokeWidth={3}
+                      className="mt-1 shrink-0"
+                      style={{ color: C.green }}
+                      aria-hidden="true"
+                    />
+                    <span style={{ color: C.inkSoft }}>{p}</span>
+                  </li>
+                ))}
+              </ul>
 
               {/* Fortschritt */}
               <div
@@ -433,10 +448,29 @@ export default function PkvFitCheck() {
             className="mt-8 rounded-2xl px-5 py-4 text-xs leading-relaxed"
             style={{ background: C.card }}
           >
-            <strong>Ehrlicher Hinweis:</strong> Die PKV ist nicht automatisch die
-            bessere Wahl. Bei größerer Familie, unsicherem Einkommen oder geplanter
-            GKV-Rückkehr passt die gesetzliche Lösung oft besser. Deshalb zeigen wir
-            dir beide Seiten – nicht nur die Vorteile.
+            <p className="mb-1.5">
+              <strong>Ehrlicher Hinweis:</strong> Die PKV ist nicht automatisch die
+              bessere Wahl. Die GKV passt langfristig oft besser bei:
+            </p>
+            <ul className="space-y-1 mb-1.5">
+              {[
+                "größerer Familie",
+                "unsicherem Einkommen",
+                "geplanter Rückkehr in die GKV",
+              ].map((p) => (
+                <li key={p} className="flex items-start gap-1.5">
+                  <Check
+                    size={13}
+                    strokeWidth={3}
+                    className="mt-0.5 shrink-0"
+                    style={{ color: C.greenDark }}
+                    aria-hidden="true"
+                  />
+                  <span>{p}</span>
+                </li>
+              ))}
+            </ul>
+            <p>Deshalb zeigen wir dir beide Seiten – nicht nur die Vorteile.</p>
           </div>
         </div>
       </main>
