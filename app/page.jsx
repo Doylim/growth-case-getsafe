@@ -180,7 +180,7 @@ export default function Home() {
               <p className="font-bold text-lg mt-3 mb-2.5">PKV-Fit-Check</p>
               <ul className="space-y-1.5 mb-4">
                 <Punkt>5 Fragen, sechs ehrliche Ergebnispfade</Punkt>
-                <Punkt>Eligibility-Gate bei 77.400&thinsp;€</Punkt>
+                <Punkt>Eligibility-Gate bei 77.400&#8239;€</Punkt>
                 <Punkt>Filtert 20–40-€-Klicks vor der Beratung</Punkt>
               </ul>
               <span
@@ -214,7 +214,7 @@ export default function Home() {
                     className="text-[11px] font-semibold text-center mb-1"
                     style={{ color: C.inkSoft }}
                   >
-                    über 77.400&thinsp;€ Jahresbrutto
+                    über 77.400&#8239;€ Jahresbrutto
                   </p>
                   <div className="flex items-center">
                     <div className="h-px flex-1" style={{ background: "#C9C9C4" }} />
@@ -260,7 +260,7 @@ export default function Home() {
                     style={{ color: C.greenDark }}
                     aria-hidden="true"
                   />
-                  über 77.400&thinsp;€ Jahresbrutto
+                  über 77.400&#8239;€ Jahresbrutto
                 </div>
                 <div
                   className="flex items-center gap-2 text-xs font-semibold"
@@ -332,7 +332,7 @@ export default function Home() {
                 style={{ aspectRatio: "9/16", background: "#000" }}
                 src="/creatives/kassen-check-spot-vo.mp4"
               />
-              <p className="text-xs mt-2 font-semibold text-white">Der Spot · 21&thinsp;s</p>
+              <p className="text-xs mt-2 font-semibold text-white">Der Spot · 21&#8239;s</p>
               <p className="text-xs" style={{ color: "#8A8F8A" }}>
                 5 Szenen nach Skript, Voiceover, Untertitel – Ton an!
               </p>
@@ -346,7 +346,7 @@ export default function Home() {
                 style={{ aspectRatio: "9/16", background: "#000" }}
                 src="/creatives/hook1-zaehler.mp4"
               />
-              <p className="text-xs mt-2 font-semibold text-white">Hook „Der Zähler“ · 11&thinsp;s</p>
+              <p className="text-xs mt-2 font-semibold text-white">Hook „Der Zähler“ · 11&#8239;s</p>
               <p className="text-xs" style={{ color: "#8A8F8A" }}>
                 Paid-Social-Hook: Count-up auf den echten Seit-Januar-Wert
               </p>
@@ -368,8 +368,8 @@ export default function Home() {
             Paid Search · RSA mit Eligibility-Filter vor dem teuren Klick
           </p>
           <div className="grid sm:grid-cols-2 gap-4">
-            <Image src="/creatives/rsa-gkv.png" alt="Google-Anzeige zur Suche 'krankenkasse zu teuer'" width={1304} height={634} className="rounded-xl w-full h-auto" />
-            <Image src="/creatives/rsa-pkv.png" alt="Google-Anzeige zur Suche 'gkv pkv wechseln' mit 77.400-Euro-Filter" width={1304} height={634} className="rounded-xl w-full h-auto" />
+            <Image src="/creatives/rsa-gkv.png" alt="Google-Anzeige zur Suche ‚krankenkasse zu teuer‘" width={1304} height={634} className="rounded-xl w-full h-auto" />
+            <Image src="/creatives/rsa-pkv.png" alt="Google-Anzeige zur Suche ‚gkv pkv wechseln‘ mit 77.400-Euro-Filter" width={1304} height={634} className="rounded-xl w-full h-auto" />
           </div>
 
           {/* CRM */}
@@ -385,7 +385,7 @@ export default function Home() {
           {/* Tracking als Kachel-Zeile */}
           <div className="grid grid-cols-3 gap-3 mt-8">
             <Kachel dunkel wert="11" label="Funnel-Events verkabelt" />
-            <Kachel dunkel wert="0" label="Cookies & PII" />
+            <Kachel dunkel wert="0" label="Cookies & Nutzer-IDs" />
             <Kachel dunkel wert="100 %" label="KPI-Kette bis zur Beratung" />
           </div>
         </div>
@@ -415,7 +415,7 @@ export default function Home() {
                   "Paid Search mit Eligibility-Filter",
                   "Paid Social mit dem Zähler als Hook",
                   "SEO-Cluster mit Freshness-Updates",
-                  "Bestand: 500.000+ per In-App-Karte, 0 € Media",
+                  "Bestand: 500.000+ per In-App-Karte, 0 € Media",
                 ],
               },
               {
@@ -481,6 +481,8 @@ export default function Home() {
                 Fight Evolution Heidelberg e.V.{" "}
                 <a
                   href="https://fight-evolution.de"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-sm font-semibold underline underline-offset-2"
                   style={{ color: C.greenDark }}
                 >
@@ -525,7 +527,7 @@ export default function Home() {
       {/* ── MAKING-OF ── */}
       <section className="px-5 py-14 sm:py-16" style={{ background: C.card }}>
         <div className="mx-auto" style={{ maxWidth: 780 }}>
-          <h2 className="font-black text-2xl mb-5 text-balance" style={{ letterSpacing: "-0.02em" }}>
+          <h2 className="font-black text-2xl mb-6 text-balance" style={{ letterSpacing: "-0.02em" }}>
             Making-of
           </h2>
           <div className="grid grid-cols-3 gap-3 mb-5">
@@ -569,7 +571,7 @@ export default function Home() {
             NS
           </div>
           <p className="font-bold text-xl text-white mb-1">Norbert Sommer</p>
-          <p className="text-sm mb-7" style={{ color: "#C9CCC9" }}>
+          <p className="text-sm mb-8" style={{ color: "#C9CCC9" }}>
             Heidelberg · Builder · AI-native · Deutsch &amp; Englisch
           </p>
           <div className="flex flex-wrap items-center justify-center gap-3 mb-8">
@@ -594,8 +596,10 @@ export default function Home() {
           <p className="text-xs leading-relaxed" style={{ color: "#8A8F8A" }}>
             Private Bewerbungsarbeit von Norbert Sommer, keine Verbindung zur
             Getsafe GmbH. Die Demos sind Konzept-Prototypen ohne Vermittlungs- oder
-            Beratungsfunktion; es werden keine personenbezogenen Daten erhoben.
-            Markennamen gehören ihren jeweiligen Inhabern. © 2026 Norbert Sommer
+            Beratungsfunktion. Sie setzen keine Cookies und legen keine
+            Nutzerprofile an; IP-Adressen werden nur kurzzeitig zum Schutz vor
+            Missbrauch verarbeitet, nicht gespeichert. Markennamen gehören ihren
+            jeweiligen Inhabern. © 2026 Norbert Sommer
           </p>
         </div>
       </footer>

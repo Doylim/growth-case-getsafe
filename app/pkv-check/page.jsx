@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
+import { useRouter } from "next/navigation";
 import { Check } from "lucide-react";
 import { track } from "../../lib/track";
 
@@ -114,6 +115,8 @@ function auswerten(a) {
   return { typ: "kritisch", gruende };
 }
 
+// aktion steuert den CTA-Klick explizit – bewusst NICHT über den
+// Button-Text, damit Copy-Änderungen das Routing nicht stumm brechen
 const ERGEBNISSE = {
   fit: {
     chip: "sieht gut aus",
@@ -121,6 +124,7 @@ const ERGEBNISSE = {
     titel: "Die PKV könnte sich für dich lohnen.",
     text: "Wechselberechtigung, Alter, Familiensituation und Einkommensplanung passen zum typischen PKV-Profil. Ob es sich wirklich rechnet, hängt an Tarif, Selbstbehalt und Gesundheitsprüfung – das klären wir in der Beratung.",
     cta: "kostenlose 15-min Beratung buchen",
+    aktion: "beratung",
   },
   pruefen: {
     chip: "individuell prüfen",
@@ -128,6 +132,7 @@ const ERGEBNISSE = {
     titel: "Kann passen – aber nicht blind wechseln.",
     text: "Bei dir sprechen Punkte dafür und dagegen. Ein Wechsel ist eine Entscheidung für Jahrzehnte – triff sie nicht per Online-Check, sondern mit einer ehrlichen Rechnung über beide Systeme.",
     cta: "kostenlose 15-min Beratung buchen",
+    aktion: "beratung",
   },
   kritisch: {
     chip: "ehrliche Antwort",
@@ -135,6 +140,7 @@ const ERGEBNISSE = {
     titel: "Die GKV ist für dich vermutlich die bessere Wahl.",
     text: "Familie, Einkommensplanung oder Alter sprechen bei dir eher gegen einen Wechsel. Was sich fast immer lohnt: innerhalb der GKV die Kasse wechseln – gleiche Grundleistungen, bis zu 770 € weniger pro Jahr.",
     cta: "Zum Kassen-Check (GKV)",
+    aktion: "kassencheck",
   },
   gate: {
     chip: "noch nicht möglich",
@@ -142,6 +148,7 @@ const ERGEBNISSE = {
     titel: "Aktuell bist du nicht wechselberechtigt.",
     text: "Als Angestellte:r brauchst du ein Jahresbrutto über 77.400 € (Versicherungspflichtgrenze 2026). Bis dahin: GKV-Kasse wechseln lohnt fast immer – gleiche Grundleistungen, bis zu 770 € Ersparnis pro Jahr.",
     cta: "Zum Kassen-Check (GKV)",
+    aktion: "kassencheck",
   },
   bald: {
     chip: "bald relevant",
@@ -149,6 +156,7 @@ const ERGEBNISSE = {
     titel: "Noch nicht – aber vermutlich bald.",
     text: "Du liegst knapp unter der Grenze. Die nächste Gehaltserhöhung oder ein Jobwechsel kann das ändern – 2027 werden die Grenzwerte voraussichtlich außerordentlich angehoben. Wir erinnern dich, wenn es so weit ist.",
     cta: "Erinnerung einrichten",
+    aktion: "erinnerung",
   },
   student: {
     chip: "Sonderfall",
@@ -156,12 +164,17 @@ const ERGEBNISSE = {
     titel: "Für Studierende gelten eigene Regeln.",
     text: "Zum Studienstart kannst du dich einmalig von der GKV-Pflicht befreien lassen – die Entscheidung gilt fürs ganze Studium. Das klären wir am besten kurz persönlich.",
     cta: "kostenlose 15-min Beratung buchen",
+    aktion: "beratung",
   },
 };
 
 export default function PkvFitCheck() {
+  const router = useRouter();
   const [antworten, setAntworten] = useState({});
   const [ergebnis, setErgebnis] = useState(null);
+  // pc_start nur einmal pro Besuch melden – auch nach „Check neu starten"
+  // (gleicher Guard wie startGemeldet im Kassen-Check)
+  const startGemeldet = useRef(false);
 
   const sichtbareFragen = FRAGEN.filter(
     (f) => !f.nur || antworten.status === f.nur
@@ -172,7 +185,10 @@ export default function PkvFitCheck() {
     aktuelleIndex < 0 ? 1 : aktuelleIndex / sichtbareFragen.length;
 
   const antworte = (id, key) => {
-    if (Object.keys(antworten).length === 0) track("pc_start");
+    if (!startGemeldet.current) {
+      startGemeldet.current = true;
+      track("pc_start");
+    }
     const neu = { ...antworten, [id]: key };
     setAntworten(neu);
     const offen = FRAGEN.filter((f) => !f.nur || neu.status === f.nur).filter(
@@ -205,6 +221,7 @@ export default function PkvFitCheck() {
       <style>{`
         .pkv-opt { transition: border-color .15s ease, background .15s ease, transform .15s ease; }
         .pkv-opt:hover { border-color: ${C.ink} !important; background: ${C.paper} !important; transform: translateY(-1px); }
+        .pkv-opt:focus-visible { outline: 2px solid ${C.ink}; outline-offset: 4px; }
         @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
       `}</style>
 
@@ -278,7 +295,7 @@ export default function PkvFitCheck() {
                 <span className="font-medium block">Wechsel von GKV in PKV?</span>
                 <span className="font-black block">Finde in 5 Fragen heraus, ob es passt.</span>
               </h1>
-              <ul className="space-y-1.5 mb-8">
+              <ul className="space-y-2.5 mb-8">
                 {[
                   "Ob du wechseln darfst",
                   "Ob es sich für dich lohnen kann",
@@ -286,7 +303,7 @@ export default function PkvFitCheck() {
                 ].map((p) => (
                   <li key={p} className="flex items-start gap-2 text-base leading-relaxed">
                     <Check
-                      size={17}
+                      size={16}
                       strokeWidth={3}
                       className="mt-1 shrink-0"
                       style={{ color: C.green }}
@@ -420,9 +437,14 @@ export default function PkvFitCheck() {
                 className="w-full rounded-full py-4 font-bold text-white mb-3 cursor-pointer transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_12px_32px_rgba(17,18,16,.25)]"
                 style={{ background: C.ink }}
                 onClick={() => {
-                  if (E.cta.includes("Kassen-Check")) {
+                  if (E.aktion === "kassencheck") {
                     track("pc_zum_kassencheck", { ergebnis: ergebnis.typ });
-                    window.location.href = "/kassen-check";
+                    router.push("/kassen-check");
+                  } else if (E.aktion === "erinnerung") {
+                    track("pc_cta_click", { ergebnis: ergebnis.typ });
+                    alert(
+                      "Konzept-Demo: Ab hier übernimmt der bestehende Getsafe-Flow – Erinnerung per E-Mail oder Push, sobald die neuen Grenzwerte gelten."
+                    );
                   } else {
                     track("pc_cta_click", { ergebnis: ergebnis.typ });
                     alert(
@@ -463,7 +485,7 @@ export default function PkvFitCheck() {
                     size={13}
                     strokeWidth={3}
                     className="mt-0.5 shrink-0"
-                    style={{ color: C.greenDark }}
+                    style={{ color: C.green }}
                     aria-hidden="true"
                   />
                   <span>{p}</span>
@@ -487,8 +509,10 @@ export default function PkvFitCheck() {
             Bundesgesundheitsministerium. Der Check ist eine grobe Ersteinschätzung
             auf Basis von 5 Angaben – keine Beratung, keine Tarifberechnung, keine
             Empfehlung im Sinne des VVG. Verbindliche Aussagen erfordern eine
-            dokumentierte persönliche Beratung. Es werden keine personenbezogenen
-            Daten erhoben oder gespeichert.
+            dokumentierte persönliche Beratung. Deine Antworten bleiben in deinem
+            Browser und werden nicht gespeichert; beim anonymen Funnel-Tracking
+            werden IP-Adressen nur kurzzeitig zum Schutz vor Missbrauch
+            verarbeitet.
           </p>
           <p>
             Diese Seite ist ein <strong>Kampagnen-Konzept</strong> und Teil einer

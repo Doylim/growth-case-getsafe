@@ -13,6 +13,7 @@ import { track } from "../../lib/track";
 // ─────────────────────────────────────────────────────────────────────────────
 
 const BBG_MONAT = 5812.5;
+const JAEG_JAHR = 77400; // Versicherungspflichtgrenze 2026
 const GUENSTIGSTE = 2.18;
 const TEUERSTE = 4.39;
 // Realer, mitgliedergewichteter Durchschnitt 2026 (amtlicher Wert des
@@ -38,9 +39,9 @@ function Haken({ children }) {
   return (
     <li className="flex items-start gap-2 text-sm leading-relaxed">
       <Check
-        size={15}
+        size={16}
         strokeWidth={3}
-        className="mt-1 shrink-0"
+        className="mt-0.5 shrink-0"
         style={{ color: C.green }}
         aria-hidden="true"
       />
@@ -70,7 +71,7 @@ function Rechner() {
     }
   };
   useEffect(() => {
-    if (brutto * 12 > 77400 && !karteGemeldet.current) {
+    if (brutto * 12 > JAEG_JAHR && !karteGemeldet.current) {
       karteGemeldet.current = true;
       track("kc_pkv_card_view");
     }
@@ -78,7 +79,9 @@ function Rechner() {
 
   useEffect(() => {
     setNow(Date.now());
-    const t = setInterval(() => setNow(Date.now()), 100);
+    // 250 ms reichen optisch völlig (2 Nachkommastellen) – 100 ms wären
+    // 10 Re-Render/s der ganzen Karte umsonst
+    const t = setInterval(() => setNow(Date.now()), 250);
     return () => clearInterval(t);
   }, []);
 
@@ -159,7 +162,7 @@ function Rechner() {
         <label htmlFor="zusatz-slider" className="text-sm font-semibold">
           Zusatzbeitrag deiner Kasse
         </label>
-        {kennt && <span className="font-bold">{fmt(zusatz, 2).replace(".", ",")} %</span>}
+        {kennt && <span className="font-bold">{fmt(zusatz, 2)} %</span>}
       </div>
       {kennt ? (
         <>
@@ -189,7 +192,7 @@ function Rechner() {
           style={{ background: C.card }}
         >
           Alles klar – wir rechnen mit dem realen Durchschnitt von{" "}
-          <strong>3,13 %</strong>.
+          <strong>{fmt(DURCHSCHNITT, 2)} %</strong>.
         </p>
       )}
       <button
@@ -265,7 +268,7 @@ function Rechner() {
 
         {/* Entscheidungskarte: erscheint in beiden Zweigen, sobald das
             Jahresbrutto über der Versicherungspflichtgrenze (77.400 €) liegt */}
-        {brutto * 12 > 77400 && (
+        {brutto * 12 > JAEG_JAHR && (
           <div
             className="mt-4 rounded-2xl overflow-hidden"
             style={{ border: `1px solid ${C.line}` }}
@@ -464,7 +467,7 @@ export default function KassenCheck() {
       <section className="px-5 py-16" style={{ background: C.card }}>
         <div className="mx-auto" style={{ maxWidth: 1080 }}>
           <h2
-            className="mb-10 leading-tight text-balance"
+            className="mb-8 leading-tight text-balance"
             style={{ fontSize: "clamp(1.6rem, 4vw, 2.3rem)", letterSpacing: "-0.02em" }}
           >
             <span className="font-medium">Kassenwechsel, neu gedacht. </span>
@@ -573,7 +576,7 @@ export default function KassenCheck() {
             <span className="font-medium">Noch unsicher? </span>
             <span className="font-black">Lass uns das gemeinsam klären.</span>
           </h2>
-          <p className="text-base mb-7" style={{ color: C.inkSoft }}>
+          <p className="text-base mb-8" style={{ color: C.inkSoft }}>
             Sprich mit einem Experten, der deine Sprache spricht – nicht
             Versicherungskauderwelsch. Kostenlos und unverbindlich.
           </p>
@@ -596,7 +599,7 @@ export default function KassenCheck() {
       <footer className="px-5 py-10">
         <div
           className="mx-auto text-xs leading-relaxed"
-          style={{ maxWidth: 720, color: C.inkSoft }}
+          style={{ maxWidth: 640, color: C.inkSoft }}
         >
           <p className="mb-2">
             <strong style={{ color: C.ink }}>Methodik:</strong> Differenz zwischen deinem
@@ -611,9 +614,11 @@ export default function KassenCheck() {
           <p className="mb-2">
             Diese Seite ist ein <strong>Kampagnen-Konzept</strong> und Teil einer
             Bewerbungsarbeit von Norbert Sommer für die Position (Senior) Growth
-            Creative bei Getsafe. Sie ist <strong>keine Seite der Getsafe GmbH</strong>,
-            hat keine Vermittlungs- oder Beratungsfunktion und erhebt keine
-            personenbezogenen Daten. Markennamen und Gestaltungselemente werden
+            Creative bei Getsafe. Sie ist <strong>keine Seite der Getsafe GmbH</strong>
+            und hat keine Vermittlungs- oder Beratungsfunktion. Deine Eingaben
+            werden vollständig im Browser verrechnet und nicht gespeichert; beim
+            anonymen Funnel-Tracking werden IP-Adressen nur kurzzeitig zum Schutz
+            vor Missbrauch verarbeitet. Markennamen und Gestaltungselemente werden
             ausschließlich zu Demonstrationszwecken referenziert.
           </p>
           <p>© 2026 Konzept-Demo · Norbert Sommer</p>
