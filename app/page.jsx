@@ -576,6 +576,13 @@ export default function Home() {
               <ArrowUpRight size={16} aria-hidden="true" />
             </a>
           </div>
+          <p className="text-xs leading-relaxed mb-4" style={{ color: "#8A8F8A" }}>
+            Werkzeug-Transparenz: Bis auf Claude Code (Max) kamen ausschließlich
+            kostenfreie Software und Anwendungen zum Einsatz. Mir ist bewusst, dass
+            bei den Creatives – visuell wie beim Voiceover – noch deutlich Luft nach
+            oben ist. Diese Arbeit zeigt, was ohne Profi-Stack und Budget bereits
+            möglich ist.
+          </p>
           <p className="text-xs leading-relaxed" style={{ color: "#8A8F8A" }}>
             Private Bewerbungsarbeit von Norbert Sommer, keine Verbindung zur
             Getsafe GmbH. Die Demos sind Konzept-Prototypen ohne Vermittlungs- oder
