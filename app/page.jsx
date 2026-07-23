@@ -497,7 +497,18 @@ export default function Home() {
               </ul>
             </div>
             <div className="rounded-[24px] p-6" style={{ background: C.card, border: `1px solid ${C.line}` }}>
-              <p className="font-bold mb-1">Hauptberuf: Fertigungsplanung in der Industrie</p>
+              <p className="font-bold mb-1">
+                Hauptberuf: Fertigungsplanung in der Industrie{" "}
+                <a
+                  href="https://www.linkedin.com/in/norbert-sommer-8ba213196/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm font-semibold underline underline-offset-2"
+                  style={{ color: C.greenDark }}
+                >
+                  LinkedIn
+                </a>
+              </p>
               <p className="text-xs mb-3" style={{ color: C.inkSoft }}>
                 Prozesse planen, steuern und verschlanken – Lean Management
               </p>
