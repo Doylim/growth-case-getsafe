@@ -8,7 +8,10 @@ import {
   Megaphone,
   BarChart3,
   CalendarRange,
-  ArrowLeftRight,
+  ArrowRight,
+  ArrowLeft,
+  ArrowDown,
+  ArrowUp,
   ArrowUpRight,
 } from "lucide-react";
 import { track } from "../lib/track";
@@ -189,32 +192,98 @@ export default function Home() {
             </Link>
           </div>
 
-          {/* Verzahnungs-Zeile: linksbündig im Duktus der Seite, bricht sauber um */}
+          {/* Routing-Karte: beide Checks sind verzahnt – als kleines Diagramm
+              im Karten-Stil der Seite (Chip + beschriftete Richtungspfeile) */}
           <div
-            className="mt-4 rounded-2xl px-5 py-4 flex flex-wrap items-center gap-x-3 gap-y-2.5 text-sm font-bold"
+            className="mt-4 rounded-[24px] p-6"
             style={{ background: C.card, border: `1px solid ${C.line}` }}
           >
-            <span
-              className="rounded-full px-4 py-2 text-white whitespace-nowrap"
-              style={{ background: C.ink }}
-            >
-              Kassen-Check
-            </span>
-            <ArrowLeftRight
-              size={18}
-              strokeWidth={2.5}
-              style={{ color: C.greenDark }}
-              aria-hidden="true"
-            />
-            <span
-              className="rounded-full px-4 py-2 text-white whitespace-nowrap"
-              style={{ background: C.ink }}
-            >
-              PKV-Fit-Check
-            </span>
-            <span style={{ color: C.inkSoft, fontWeight: 600 }}>
-              Kein Lead geht verloren.
-            </span>
+            <Chip>Kein Lead geht verloren</Chip>
+            <div className="mt-4 flex flex-col sm:flex-row sm:items-center gap-3">
+              <span
+                className="w-fit rounded-full px-4 py-2 text-sm font-bold text-white whitespace-nowrap"
+                style={{ background: C.ink }}
+              >
+                Kassen-Check
+              </span>
+
+              {/* Desktop: zwei beschriftete Pfeil-Linien zwischen den Pills */}
+              <div className="hidden sm:flex flex-1 flex-col gap-1.5 min-w-0 px-1">
+                <div>
+                  <p
+                    className="text-[11px] font-semibold text-center mb-1"
+                    style={{ color: C.inkSoft }}
+                  >
+                    über 77.400&thinsp;€ Jahresbrutto
+                  </p>
+                  <div className="flex items-center">
+                    <div className="h-px flex-1" style={{ background: "#C9C9C4" }} />
+                    <ArrowRight
+                      size={15}
+                      strokeWidth={2.5}
+                      className="-ml-1 shrink-0"
+                      style={{ color: C.greenDark }}
+                      aria-hidden="true"
+                    />
+                  </div>
+                </div>
+                <div>
+                  <div className="flex items-center">
+                    <ArrowLeft
+                      size={15}
+                      strokeWidth={2.5}
+                      className="-mr-1 shrink-0"
+                      style={{ color: C.greenDark }}
+                      aria-hidden="true"
+                    />
+                    <div className="h-px flex-1" style={{ background: "#C9C9C4" }} />
+                  </div>
+                  <p
+                    className="text-[11px] font-semibold text-center mt-1"
+                    style={{ color: C.inkSoft }}
+                  >
+                    nicht berechtigt oder GKV passt besser
+                  </p>
+                </div>
+              </div>
+
+              {/* Mobil: dieselben zwei Routen als Pfeil-Zeilen, linksbündig */}
+              <div className="sm:hidden flex flex-col gap-1.5 py-0.5 pl-1">
+                <div
+                  className="flex items-center gap-2 text-xs font-semibold"
+                  style={{ color: C.inkSoft }}
+                >
+                  <ArrowDown
+                    size={14}
+                    strokeWidth={2.5}
+                    className="shrink-0"
+                    style={{ color: C.greenDark }}
+                    aria-hidden="true"
+                  />
+                  über 77.400&thinsp;€ Jahresbrutto
+                </div>
+                <div
+                  className="flex items-center gap-2 text-xs font-semibold"
+                  style={{ color: C.inkSoft }}
+                >
+                  <ArrowUp
+                    size={14}
+                    strokeWidth={2.5}
+                    className="shrink-0"
+                    style={{ color: C.greenDark }}
+                    aria-hidden="true"
+                  />
+                  nicht berechtigt oder GKV passt besser
+                </div>
+              </div>
+
+              <span
+                className="w-fit rounded-full px-4 py-2 text-sm font-bold text-white whitespace-nowrap"
+                style={{ background: C.ink }}
+              >
+                PKV-Fit-Check
+              </span>
+            </div>
           </div>
         </div>
       </section>
@@ -428,9 +497,9 @@ export default function Home() {
               </ul>
             </div>
             <div className="rounded-[24px] p-6" style={{ background: C.card, border: `1px solid ${C.line}` }}>
-              <p className="font-bold mb-1">Hauptberuf: Operations &amp; Lean Management</p>
+              <p className="font-bold mb-1">Hauptberuf: Fertigungsplanung in der Industrie</p>
               <p className="text-xs mb-3" style={{ color: C.inkSoft }}>
-                Prozesse verschlanken in der Industrie
+                Prozesse planen, steuern und verschlanken – Lean Management
               </p>
               <ul className="space-y-1.5">
                 <Punkt>Testen, messen, Verschwendung eliminieren</Punkt>
