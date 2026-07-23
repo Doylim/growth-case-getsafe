@@ -541,6 +541,21 @@ export default function Home() {
               AI ist kein Trend in meinem Werkzeugkasten. Es ist der Werkzeugkasten.
             </strong>
           </p>
+          <div
+            className="mt-5 rounded-[24px] p-6"
+            style={{ background: C.paper, border: `1px solid ${C.line}` }}
+          >
+            <p className="text-sm leading-relaxed" style={{ color: C.inkSoft }}>
+              <strong style={{ color: C.ink }}>Werkzeug-Transparenz:</strong> Bis auf
+              Claude Code (Max) kamen ausschließlich kostenfreie Software und
+              Anwendungen zum Einsatz. Mir ist bewusst, dass bei den Creatives –
+              visuell wie beim Voiceover – noch deutlich Luft nach oben ist.{" "}
+              <strong style={{ color: C.ink }}>
+                Diese Arbeit zeigt, was ohne Profi-Stack und Budget bereits möglich
+                ist.
+              </strong>
+            </p>
+          </div>
         </div>
       </section>
 
@@ -576,13 +591,6 @@ export default function Home() {
               <ArrowUpRight size={16} aria-hidden="true" />
             </a>
           </div>
-          <p className="text-xs leading-relaxed mb-4" style={{ color: "#8A8F8A" }}>
-            Werkzeug-Transparenz: Bis auf Claude Code (Max) kamen ausschließlich
-            kostenfreie Software und Anwendungen zum Einsatz. Mir ist bewusst, dass
-            bei den Creatives – visuell wie beim Voiceover – noch deutlich Luft nach
-            oben ist. Diese Arbeit zeigt, was ohne Profi-Stack und Budget bereits
-            möglich ist.
-          </p>
           <p className="text-xs leading-relaxed" style={{ color: "#8A8F8A" }}>
             Private Bewerbungsarbeit von Norbert Sommer, keine Verbindung zur
             Getsafe GmbH. Die Demos sind Konzept-Prototypen ohne Vermittlungs- oder
