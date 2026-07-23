@@ -136,7 +136,7 @@ export default function Home() {
           </ul>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
             <Kachel dunkel wert="2" label="Demos live & klickbar" />
-            <Kachel dunkel wert="< 20 €" label="Gesamtkosten" />
+            <Kachel dunkel wert="0 €" label="Zusatzkosten – nur mein Claude-Abo" />
             <Kachel dunkel wert="1 Woche" label="Abende, neben dem Job" />
             <Kachel dunkel wert="0" label="Seiten Anschreiben" />
           </div>
@@ -531,7 +531,7 @@ export default function Home() {
             Making-of
           </h2>
           <div className="grid grid-cols-3 gap-3 mb-5">
-            <Kachel wert="< 20 €" label="Gesamtkosten" />
+            <Kachel wert="0 €" label="Zusatzkosten – nur mein Claude-Abo" />
             <Kachel wert="1 Woche" label="Abende – neben Job, Verein, Familie" />
             <Kachel wert="100 %" label="selbst entschieden & verantwortet" />
           </div>
