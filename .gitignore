@@ -7,3 +7,7 @@ node_modules/
 
 # Private Unterlagen nie deployen
 public/*.docx
+# claude code: lokalen Zustand ignorieren, verteilte Regeln/Skills versionieren
+.claude/settings.local.json
+.claude/scheduled_tasks.lock
+.claude/worktrees/
